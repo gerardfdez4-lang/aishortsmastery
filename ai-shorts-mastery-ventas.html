@@ -40,8 +40,12 @@
   .chans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:6px}
   @media(max-width:680px){.chans{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}}
   .ch{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 18px 50px rgba(0,0,0,.4)}
-  .ch .vid{position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#000}
-  .ch .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .ch .vid{position:relative;display:block;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#000}
+  .ch .vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .ch .vid .pl{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;
+    background:#ff0000;color:#fff;display:grid;place-items:center;font-size:22px;padding-left:4px;box-shadow:0 6px 22px rgba(0,0,0,.55)}
+  .ch .vid:hover .pl{transform:translate(-50%,-50%) scale(1.08)}
+  .ch .vid .yt{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.72);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px}
   .ch .meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;padding:0 4px 4px}
   .ch .meta .name{font-weight:700;font-size:15px}
   .ch .meta .tag{font-size:11px;font-weight:800;color:#0a0a0f;background:linear-gradient(90deg,var(--a1),var(--a2));padding:2px 8px;border-radius:999px;margin-top:3px;display:inline-block}
@@ -137,15 +141,15 @@
     <div class="sec-sub">Vídeos 100% generados con IA, sin que nadie dé la cara. Dale al play: son públicos, puedes comprobarlo en YouTube.</div>
     <div class="chans">
       <div class="ch">
-        <div class="vid"><iframe src="https://www.youtube.com/embed/Bhz-THvb5mg" title="El Calacas" loading="lazy" allow="accelerometer;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+        <a class="vid" href="https://www.youtube.com/shorts/Bhz-THvb5mg" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/Bhz-THvb5mg/hqdefault.jpg" alt="El Calacas" referrerpolicy="no-referrer"><span class="pl">▶</span><span class="yt">Ver en YouTube</span></a>
         <div class="meta"><div><div class="name">El Calacas</div><span class="tag">hipótesis</span></div><div class="num">5,7 M<small>visitas</small></div></div>
       </div>
       <div class="ch">
-        <div class="vid"><iframe src="https://www.youtube.com/embed/wj3Z2ssCDrQ" title="Super Viral" loading="lazy" allow="accelerometer;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+        <a class="vid" href="https://www.youtube.com/shorts/wj3Z2ssCDrQ" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/wj3Z2ssCDrQ/hqdefault.jpg" alt="Super Viral" referrerpolicy="no-referrer"><span class="pl">▶</span><span class="yt">Ver en YouTube</span></a>
         <div class="meta"><div><div class="name">Super Viral</div><span class="tag">curiosidades</span></div><div class="num">6,1 M<small>visitas</small></div></div>
       </div>
       <div class="ch">
-        <div class="vid"><iframe src="https://www.youtube.com/embed/EmtNPm_n-CA" title="CocoBunny" loading="lazy" allow="accelerometer;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+        <a class="vid" href="https://www.youtube.com/shorts/EmtNPm_n-CA" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/EmtNPm_n-CA/hqdefault.jpg" alt="CocoBunny" referrerpolicy="no-referrer"><span class="pl">▶</span><span class="yt">Ver en YouTube</span></a>
         <div class="meta"><div><div class="name">CocoBunny</div><span class="tag">infantil</span></div><div class="num">1,75 M<small>suscriptores</small></div></div>
       </div>
     </div>
