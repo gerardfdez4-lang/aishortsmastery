@@ -34,14 +34,17 @@
   .hero-cta .micro{color:var(--muted2);font-size:14px;font-weight:600}
   .strike{color:var(--muted2);text-decoration:line-through;margin-right:8px}
 
-  /* proof */
-  .proof-grid{display:flex;flex-direction:column;gap:26px}
-  .dash{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
-  .dash .screen{border-radius:10px;overflow:hidden;background:#fff;position:relative}
-  .dash iframe{width:1180px;border:0;display:block;transform-origin:top left}
-  .dash .cap{display:flex;align-items:center;gap:10px;margin-top:12px;font-weight:700;font-size:clamp(15px,1.8vw,19px)}
-  .dash .cap .tag{font-size:12px;font-weight:800;color:#0a0a0f;background:linear-gradient(90deg,var(--a1),var(--a2));padding:3px 10px;border-radius:999px}
-  .dash .cap .num{color:var(--good)}
+  /* proof — canales reales (vídeos públicos) */
+  .chans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:6px}
+  @media(max-width:680px){.chans{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}}
+  .ch{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 18px 50px rgba(0,0,0,.4)}
+  .ch .vid{position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#000}
+  .ch .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .ch .meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;padding:0 4px 4px}
+  .ch .meta .name{font-weight:700;font-size:15px}
+  .ch .meta .tag{font-size:11px;font-weight:800;color:#0a0a0f;background:linear-gradient(90deg,var(--a1),var(--a2));padding:2px 8px;border-radius:999px;margin-top:3px;display:inline-block}
+  .ch .meta .num{font-weight:800;color:var(--good);font-size:15px;white-space:nowrap;text-align:right}
+  .ch .meta .num small{display:block;color:var(--muted2);font-weight:600;font-size:11px}
 
   /* steps */
   .steps{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px}
@@ -125,19 +128,26 @@
     </div>
   </section>
 
-  <!-- PROOF -->
+  <!-- PROOF · canales reales (públicos) -->
   <section>
-    <div class="kicker">Esto es real</div>
-    <h2>Canales reales. <span class="grad">Cifras reales.</span></h2>
-    <div class="sec-sub">Capturas en vivo de YouTube Studio. Distintos nichos, el mismo sistema detrás.</div>
-    <div class="proof-grid">
-      <div class="dash"><div class="screen"><iframe src="yt-studio-elcalacas.html" scrolling="no" title="El Calacas"></iframe></div>
-        <div class="cap"><span class="tag">hipótesis</span> El Calacas · <span class="num">17.387 € / mes</span></div></div>
-      <div class="dash"><div class="screen"><iframe src="yt-studio-superviral.html" scrolling="no" title="Super Viral"></iframe></div>
-        <div class="cap"><span class="tag">curiosidades</span> Super Viral · <span class="num">14.166 € / mes</span></div></div>
-      <div class="dash"><div class="screen"><iframe src="yt-studio-monetizacion.html" scrolling="no" title="Duck"></iframe></div>
-        <div class="cap"><span class="tag">infantil</span> Duck · <span class="num">17.872 € / mes</span></div></div>
+    <div class="kicker">Esto ya está pasando</div>
+    <h2>Canales reales. <span class="grad">Visitas reales.</span></h2>
+    <div class="sec-sub">Vídeos 100% generados con IA, sin que nadie dé la cara. Dale al play: son públicos, puedes comprobarlo en YouTube.</div>
+    <div class="chans">
+      <div class="ch">
+        <div class="vid"><iframe src="https://www.youtube.com/embed/Bhz-THvb5mg" title="El Calacas" loading="lazy" allow="accelerometer;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+        <div class="meta"><div><div class="name">El Calacas</div><span class="tag">hipótesis</span></div><div class="num">5,7 M<small>visitas</small></div></div>
+      </div>
+      <div class="ch">
+        <div class="vid"><iframe src="https://www.youtube.com/embed/wj3Z2ssCDrQ" title="Super Viral" loading="lazy" allow="accelerometer;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+        <div class="meta"><div><div class="name">Super Viral</div><span class="tag">curiosidades</span></div><div class="num">6,1 M<small>visitas</small></div></div>
+      </div>
+      <div class="ch">
+        <div class="vid"><iframe src="https://www.youtube.com/embed/EmtNPm_n-CA" title="CocoBunny" loading="lazy" allow="accelerometer;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+        <div class="meta"><div><div class="name">CocoBunny</div><span class="tag">infantil</span></div><div class="num">1,75 M<small>suscriptores</small></div></div>
+      </div>
     </div>
+    <div class="sec-sub" style="margin-top:22px;margin-bottom:0">Tres nichos distintos, el mismo sistema detrás. No es suerte: es un patrón <b style="color:#fff">que se puede copiar</b>.</div>
   </section>
 
   <!-- WHAT -->
@@ -238,19 +248,5 @@
   <a class="nav-cta" href="https://buy.stripe.com/6oU7sN5Et4SB7zCdylgfu00" target="_blank" rel="noopener" style="font-size:15px;padding:12px 22px">Conseguirlo →</a>
 </div>
 
-<script>
-  function fit(){
-    document.querySelectorAll('.dash .screen').forEach(sc=>{
-      const w=sc.clientWidth, s=w/1180;
-      const ifr=sc.querySelector('iframe');
-      ifr.style.height='1300px';
-      ifr.style.transform='scale('+s+')';
-      sc.style.height=Math.round(560*s)+'px';
-    });
-  }
-  window.addEventListener('resize',fit);
-  window.addEventListener('load',fit);
-  fit();
-</script>
 </body>
 </html>
