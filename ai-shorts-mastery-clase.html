@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Shorts Mastery — Clase gratis</title>
+<style>
+  :root{
+    --bg:#0a0a0f; --bg2:#12121a; --ink:#ffffff; --muted:#9aa0b4; --muted2:#6b7185;
+    --a1:#ff3d3d; --a2:#ff8a00; --card:#16161f; --line:#262633; --good:#39d98a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1200px 700px at 70% -10%, #20121f 0%, var(--bg) 55%) , var(--bg);
+    color:var(--ink); overflow:hidden;
+  }
+  .stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
+    padding:7vh 9vw;opacity:0;transition:opacity .35s ease}
+  .slide.on{display:flex;opacity:1}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:clamp(12px,1.5vw,15px);
+    font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--a2);margin-bottom:18px}
+  .kicker::before{content:"";width:30px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--a1),var(--a2))}
+  h1{font-size:clamp(30px,5.4vw,68px);line-height:1.04;font-weight:800;letter-spacing:-.02em;margin-bottom:18px}
+  h1 .grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:clamp(17px,2.3vw,26px);color:var(--muted);line-height:1.5;max-width:24ch;font-weight:500}
+  .sub.wide{max-width:34ch}
+  .body{font-size:clamp(17px,2.1vw,25px);color:#d7dae6;line-height:1.55;max-width:30ch;font-weight:400}
+  .body b{color:#fff;font-weight:700}
+  .big-num{font-size:clamp(54px,12vw,150px);font-weight:900;letter-spacing:-.03em;line-height:.95;
+    background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .chan{display:flex;align-items:center;gap:14px;font-size:clamp(18px,2.4vw,30px);font-weight:700;margin-bottom:6px}
+  .chan .pill{font-size:13px;font-weight:700;color:#0a0a0f;background:linear-gradient(90deg,var(--a1),var(--a2));padding:4px 10px;border-radius:999px;letter-spacing:.04em}
+  .chan-sub{color:var(--muted);font-size:clamp(15px,1.8vw,20px);margin-top:14px;font-weight:500}
+  ul.checks{list-style:none;display:flex;flex-direction:column;gap:16px;margin-top:10px}
+  ul.checks li{display:flex;gap:14px;align-items:flex-start;font-size:clamp(17px,2.1vw,25px);line-height:1.35;color:#e7e9f2;font-weight:500}
+  ul.checks li i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+    background:rgba(57,217,138,.14);color:var(--good);font-style:normal;font-weight:800;margin-top:2px;font-size:16px}
+  ul.checks.x li i{background:rgba(255,61,61,.14);color:var(--a1)}
+  ul.checks.stackv li{align-items:center;gap:14px}
+  ul.checks.stackv li span{flex:1}
+  ul.checks.stackv li em{font-style:normal;color:var(--a2);font-weight:800;white-space:nowrap}
+  .steps{display:flex;gap:18px;align-items:stretch;flex-wrap:wrap;margin-top:22px}
+  .step{flex:1;min-width:210px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 22px;position:relative}
+  .step .n{position:absolute;top:-14px;left:22px;width:30px;height:30px;border-radius:50%;
+    background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:900;display:grid;place-items:center;font-size:15px}
+  .step .emo{font-size:40px;margin-bottom:12px}
+  .step .t{font-size:clamp(17px,1.9vw,22px);font-weight:700;line-height:1.25}
+  .step .d{color:var(--muted);font-size:clamp(13px,1.4vw,16px);margin-top:8px;font-weight:500}
+  .arrow{display:grid;place-items:center;color:var(--muted2);font-size:30px;flex:none}
+  @media(max-width:760px){.arrow{transform:rotate(90deg)}}
+  .note-line{margin-top:26px;font-size:clamp(16px,1.9vw,22px);font-weight:700}
+  .note-line .grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .flow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .flow .node{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-weight:700;font-size:clamp(14px,1.5vw,19px);text-align:center}
+  .flow .node small{display:block;color:var(--muted);font-weight:500;font-size:12px;margin-top:3px}
+  .flow .sep{color:var(--a2);font-size:24px;font-weight:800}
+  .brand-chip{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--card);
+    padding:10px 16px;border-radius:999px;font-weight:700;font-size:clamp(14px,1.7vw,19px);margin-top:30px;width:max-content}
+  .brand-chip .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,var(--a1),var(--a2))}
+  .price{font-size:clamp(70px,16vw,200px);font-weight:900;letter-spacing:-.03em;line-height:.9;
+    background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .cta{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(90deg,var(--a1),var(--a2));
+    color:#0a0a0f;font-weight:800;font-size:clamp(18px,2.3vw,28px);padding:18px 34px;border-radius:999px;
+    text-decoration:none;margin-top:30px;width:max-content}
+  .small-note{color:var(--muted2);font-size:clamp(13px,1.5vw,17px);margin-top:18px;font-weight:500}
+
+  /* proof (dashboard en vivo) */
+  .slide.proof{padding:4vh 4vw;align-items:center;text-align:center}
+  .slide.proof .kicker{margin-bottom:14px}
+  .frame{margin:0 auto;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);position:relative}
+  .frame iframe{width:1180px;border:0;display:block;transform-origin:top left}
+  .caption{margin-top:18px;color:var(--muted);font-size:clamp(15px,1.9vw,22px);font-weight:600}
+  .caption b{color:#fff}
+
+  /* chrome */
+  .progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--a1),var(--a2));z-index:30;transition:width .3s}
+  .counter{position:fixed;bottom:20px;right:24px;color:var(--muted2);font-size:14px;font-weight:700;letter-spacing:.05em;z-index:30}
+  .brandmark{position:fixed;bottom:20px;left:24px;color:var(--muted2);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;z-index:30}
+  .nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:30}
+  .nav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:#fff;cursor:pointer;font-size:18px}
+  .nav button:hover{border-color:var(--a2)}
+  .hint{position:fixed;top:18px;right:24px;color:var(--muted2);font-size:12px;z-index:30;font-weight:600}
+  .notes{position:fixed;left:0;right:0;bottom:0;background:#05050a;border-top:1px solid var(--line);
+    padding:16px 24px 56px;color:#cdd2e2;font-size:16px;line-height:1.5;z-index:25;display:none;max-height:38vh;overflow:auto}
+  .notes.on{display:block}
+  .notes b{color:var(--a2)}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="hint">← →  mover · F pantalla completa · N notas</div>
+<div class="brandmark">AI Shorts Mastery</div>
+<div class="counter" id="counter">01 / 23</div>
+
+<div class="stage" id="stage">
+
+  <!-- 1 · HOOK por curiosidad (sin dinero) -->
+  <section class="slide" data-notes="HOOK. Tono cercano y tranquilo, NADA de gurú. Abre con curiosidad, no con dinero: 'Muchos de los Shorts virales que ves en YouTube no los hace una persona. Los hace una IA. Hoy te enseño cómo, con canales reales que puedes comprobar.'">
+    <div class="kicker">Clase gratis · 15 min</div>
+    <h1>Muchos Shorts virales <span class="grad">no los hace una persona</span>.<br>Los hace una IA.</h1>
+    <div class="sub wide">Te enseño cómo funciona, con canales reales — y cómo se monetiza. Sin humo.</div>
+    <div class="brand-chip"><span class="dot"></span> AI Shorts Mastery</div>
+  </section>
+
+  <!-- 2 · Pacto -->
+  <section class="slide" data-notes="EL PACTO. Generas confianza. 'No te voy a vender nada raro. En 15 minutos vas a ver canales reales, entender cómo se hacen y decidir tú si es para ti.'">
+    <div class="kicker">Antes de empezar</div>
+    <h1>15 minutos.<br><span class="grad">Cero humo.</span></h1>
+    <div class="body wide">Vas a ver <b>canales reales</b>, entender <b>cómo se hacen</b> y decidir tú <b>si es para ti</b>. Nada más.</div>
+  </section>
+
+  <!-- 3 · El fenómeno (intro) -->
+  <section class="slide" data-notes="EL FENÓMENO. Presenta la realidad antes que el dinero. 'Esto ya está pasando: canales que mueven millones de visitas y que casi nadie sabe que son IA.' Aquí, en la grabación, vas a ABRIR YouTube en directo.">
+    <div class="kicker">Esto ya está pasando</div>
+    <h1>Canales que <span class="grad">nadie</span> sabe que son IA</h1>
+    <div class="body wide">Sin cara, sin equipo, sin actores. Y mueven <b>millones de visitas</b>. Te enseño tres, ahora mismo.</div>
+  </section>
+
+  <!-- 4 · El Calacas (visitas reales públicas) -->
+  <section class="slide" data-notes="CANAL REAL 1. AQUÍ abres el canal El Calacas EN YOUTUBE en directo y enseñas el Short. Es una cifra PÚBLICA, verificable: 5,7 M de visitas en un solo Short. Insiste: 'esto lo puedes comprobar tú mismo'.">
+    <div class="kicker">Canal real · público</div>
+    <div class="chan">El Calacas <span class="pill">hipótesis</span></div>
+    <div class="big-num">5,7 M</div>
+    <div class="chan-sub">visitas en UN solo Short · 100% IA, sin dar la cara · compruébalo en YouTube</div>
+  </section>
+
+  <!-- 5 · Super Viral -->
+  <section class="slide" data-notes="CANAL REAL 2. Otro nicho (curiosidades). Abre el canal en directo. 6,1 M de visitas, público.">
+    <div class="kicker">Canal real · público</div>
+    <div class="chan">Super Viral <span class="pill">curiosidades</span></div>
+    <div class="big-num">6,1 M</div>
+    <div class="chan-sub">visitas en un Short · datos curiosos generados con IA</div>
+  </section>
+
+  <!-- 6 · CocoBunny -->
+  <section class="slide" data-notes="CANAL REAL 3. Nicho infantil, el más grande en comunidad. 1,75 M de suscriptores. Distinto nicho, mismo patrón.">
+    <div class="kicker">Canal real · público</div>
+    <div class="chan">CocoBunny <span class="pill">infantil</span></div>
+    <div class="big-num">1,75 M</div>
+    <div class="chan-sub">suscriptores · otro nicho, exactamente el mismo patrón</div>
+  </section>
+
+  <!-- 7 · Patrón -->
+  <section class="slide" data-notes="REMATE. 'Tres nichos completamente distintos, el mismo sistema detrás. No es suerte: es replicable.'">
+    <h1>No es suerte.<br>Es un <span class="grad">patrón</span>.</h1>
+    <div class="body wide">Distintos nichos, distintos idiomas… el mismo sistema detrás. Y un patrón <b>se puede copiar</b>.</div>
+  </section>
+
+  <!-- 8 · Cómo funciona -->
+  <section class="slide" data-notes="Transición al cómo. 'Y te preguntarás: ¿cómo, sin cámara ni equipo? Por dentro son solo 3 piezas.'">
+    <div class="kicker">Cómo funciona</div>
+    <h1>¿Cómo, sin cámara<br>ni equipo? <span class="grad">3 piezas</span></h1>
+  </section>
+
+  <!-- 9 · Pieza 1 -->
+  <section class="slide" data-notes="PIEZA 1: el formato. Qué tipo de contenido funciona y por qué. Sin decir el nicho exacto (eso es del curso).">
+    <div class="kicker">Pieza 1 · el formato</div>
+    <h1>Un formato que el<br>algoritmo <span class="grad">premia</span></h1>
+    <div class="body wide">Shorts cortos, visuales y repetibles que YouTube empuja a millones de personas.</div>
+  </section>
+
+  <!-- 10 · Pieza 2 (3 pasos) -->
+  <section class="slide" data-notes="PIEZA 2 — el 'ajá' de simplicidad. Enseña el flujo de 3 pasos y nombra las herramientas para que se vea fácil. 'Sin automatizaciones raras, sin código.' Lo que NO dices: qué vídeo elegir y el prompt exacto.">
+    <div class="kicker">Pieza 2 · la producción</div>
+    <h1>La IA crea<br>el vídeo <span class="grad">por ti</span></h1>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div class="emo">🎬</div><div class="t">Vídeo de referencia</div><div class="d">Coges un Short que ya funciona como modelo.</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="n">2</div><div class="emo">🤖</div><div class="t">Pides el prompt a la IA</div><div class="d">Claude o ChatGPT te dan el prompt del vídeo.</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="n">3</div><div class="emo">✨</div><div class="t">Higgsfield lo genera</div><div class="d">Pegas el prompt y sale tu vídeo listo.</div></div>
+    </div>
+    <div class="note-line">Sin automatizaciones raras. <span class="grad">3 pasos. Eso es todo.</span></div>
+  </section>
+
+  <!-- 11 · Pieza 3 -->
+  <section class="slide" data-notes="PIEZA 3: monetización a alto nivel. 'YouTube reparte ingresos de anuncios en Shorts y de Premium. Subes, creces y cobras.'">
+    <div class="kicker">Pieza 3 · el dinero</div>
+    <h1>Y YouTube<br>lo <span class="grad">monetiza</span></h1>
+    <div class="body wide">Anuncios en el feed de Shorts + YouTube Premium. Subes, el canal crece y empiezas a cobrar cada mes.</div>
+  </section>
+
+  <!-- 12 · ¿Cuánto se gana? (honesto) -->
+  <section class="slide" data-notes="EL DINERO, honesto y sin promesas. 'No te voy a decir una cifra mágica. Depende de las visitas. Un canal asentado puede rondar los 10.000–18.000 € al mes. No el primer día — pero es real. Y te lo enseño con datos míos.'">
+    <div class="kicker">¿Y cuánto se gana?</div>
+    <h1>Depende de las<br><span class="grad">visitas</span></h1>
+    <div class="body wide">Un canal asentado puede rondar los <b>10.000–18.000 € al mes</b>. No el primer día — pero es real. Y no te lo cuento de oídas…</div>
+  </section>
+
+  <!-- 13 · PRUEBA REAL: tu canal Duck -->
+  <section class="slide proof" data-notes="PRUEBA REAL Y TUYA. Esta es la ÚNICA captura de Studio que enseñas, porque es TU canal (Duck). 'Este es mi propio canal por dentro.' IMPORTANTE: pon aquí tu cifra REAL del último mes; si no es 17.872 €, edítalo en el dashboard de Duck y en este texto.">
+    <div class="kicker">Y no es de oídas · mi canal</div>
+    <div class="frame"><iframe src="yt-studio-monetizacion.html" scrolling="no" title="Mi canal"></iframe></div>
+    <div class="caption">Mi propio canal por dentro · <b>17.872 € el mes pasado</b> · datos reales de YouTube Studio</div>
+  </section>
+
+  <!-- 14 · Objeción cara -->
+  <section class="slide" data-notes="OBJECIONES, rápido. 1: la cara.">
+    <div class="kicker">"Sí, pero…"</div>
+    <h1>"No quiero<br>dar la cara"</h1>
+    <ul class="checks"><li><i>✓</i> No apareces nunca. Ni tu voz si no quieres. Todo lo pone la IA.</li></ul>
+  </section>
+
+  <!-- 15 · Objeción técnico -->
+  <section class="slide" data-notes="Objeción 2: técnico.">
+    <div class="kicker">"Sí, pero…"</div>
+    <h1>"No soy<br>técnico"</h1>
+    <ul class="checks"><li><i>✓</i> Si sabes copiar y pegar, puedes. Son 3 pasos, no programación.</li></ul>
+  </section>
+
+  <!-- 16 · Objeción saturado -->
+  <section class="slide" data-notes="Objeción 3: saturación.">
+    <div class="kicker">"Sí, pero…"</div>
+    <h1>"Está<br>saturado"</h1>
+    <ul class="checks"><li><i>✓</i> El contenido corto se consume y se olvida en horas. La demanda es enorme.</li></ul>
+  </section>
+
+  <!-- 17 · Objeción dinero -->
+  <section class="slide" data-notes="Objeción 4: dinero de montaje.">
+    <div class="kicker">"Sí, pero…"</div>
+    <h1>"No tengo<br>dinero para montarlo"</h1>
+    <ul class="checks"><li><i>✓</i> Sin equipo, sin local, sin stock. Solo un par de herramientas baratas.</li></ul>
+  </section>
+
+  <!-- 18 · El gap -->
+  <section class="slide" data-notes="EL GAP. Aquí gira el cuchillo: simple NO es lo mismo que hacerlo bien. Nombra los errores, no los resuelvas.">
+    <div class="kicker">La verdad</div>
+    <h1>Verlo simple no es<br>hacerlo <span class="grad">bien</span></h1>
+    <ul class="checks x">
+      <li><i>✕</i> Eligen mal el vídeo de referencia.</li>
+      <li><i>✕</i> Usan prompts que dan vídeos mediocres.</li>
+      <li><i>✕</i> Pican un nicho que NO monetiza.</li>
+      <li><i>✕</i> Se desmonetizan por errores tontos.</li>
+    </ul>
+  </section>
+
+  <!-- 19 · Lo que separa -->
+  <section class="slide" data-notes="Lo que separa intentarlo de conseguirlo: los detalles que SÍ son el valor del curso.">
+    <h1>La diferencia entre<br><span class="grad">intentarlo y conseguirlo</span></h1>
+    <ul class="checks">
+      <li><i>✓</i> <b>Qué</b> vídeo de referencia eliges.</li>
+      <li><i>✓</i> El <b>prompt exacto</b> que da vídeos que enganchan.</li>
+      <li><i>✓</i> El <b>nicho que SÍ paga</b>.</li>
+      <li><i>✓</i> Cómo montas el canal para que <b>monetice</b>.</li>
+    </ul>
+    <div class="note-line">Eso no se improvisa. <span class="grad">Se sigue paso a paso.</span></div>
+  </section>
+
+  <!-- 20 · El curso -->
+  <section class="slide" data-notes="PRESENTAS el curso. 'He metido el sistema completo, el mismo que uso, en AI Shorts Mastery.'">
+    <div class="kicker">La solución</div>
+    <h1>AI Shorts<br><span class="grad">Mastery</span></h1>
+    <div class="sub wide">El mismo sistema que uso, paso a paso, para que montes tu canal y lo tengas produciendo en días.</div>
+  </section>
+
+  <!-- 21 · Stack -->
+  <section class="slide" data-notes="STACK de valor. Léelo despacio. Cada línea es una razón para comprar.">
+    <div class="kicker">Qué te llevas</div>
+    <ul class="checks stackv">
+      <li><i>✓</i> <span><b>Curso completo en vídeo (2 h)</b></span><em>197 €</em></li>
+      <li><i>✓</i> <span><b>30 nichos de alto potencial</b></span><em>147 €</em></li>
+      <li><i>✓</i> <span><b>Biblioteca de prompts</b> (copiar y pegar)</span><em>127 €</em></li>
+      <li><i>✓</i> <span>Herramientas exactas (Claude → Higgsfield)</span><em>97 €</em></li>
+      <li><i>✓</i> <span>Plantillas y setup del canal</span><em>67 €</em></li>
+      <li><i>✓</i> <span>Guía de monetización</span><em>97 €</em></li>
+      <li><i>✓</i> <span>Acceso de por vida + soporte</span><em>94 €</em></li>
+    </ul>
+    <div class="note-line">Valor total <span style="text-decoration:line-through;color:var(--muted2)">826 €</span></div>
+  </section>
+
+  <!-- 22 · Precio -->
+  <section class="slide" data-notes="PRECIO con ancla honesta. 'Valor real más de 800 €. Hoy, 147 €, pago único. Menos de lo que cuesta una cena fuera, y es el mismo sistema que uso yo.'">
+    <div class="kicker">El precio</div>
+    <div class="note-line" style="margin-top:0;margin-bottom:6px"><span style="text-decoration:line-through;color:var(--muted2)">Valor 826 €</span></div>
+    <div class="price">147 €</div>
+    <div class="chan-sub">pago único · acceso de por vida · España y México</div>
+    <div class="note-line">Llévate <span class="grad">todo el sistema</span> por menos de lo que cuesta una cena.</div>
+  </section>
+
+  <!-- 23 · CTA -->
+  <section class="slide" data-notes="CTA final. Cara a cámara si grabas selfie. 'Si lo aplicas y no avanzas, te devuelvo el dinero. El riesgo es cero.' Acaba con la acción concreta.">
+    <div class="kicker">Empieza hoy</div>
+    <h1>Tu primer canal,<br>esta <span class="grad">semana</span></h1>
+    <div class="body wide">Garantía de 7 días: aplícalo y, si no avanzas, te devolvemos el dinero. El riesgo es cero; el tiempo, no.</div>
+    <a class="cta" href="https://buy.stripe.com/6oU7sN5Et4SB7zCdylgfu00" target="_blank" rel="noopener">Entrar en AI Shorts Mastery · 147 € →</a>
+    <div class="small-note">Curso completo (2 h) · 30 nichos · biblioteca de prompts · acceso de por vida</div>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="go(-1)" aria-label="Anterior">‹</button>
+  <button onclick="go(1)" aria-label="Siguiente">›</button>
+</div>
+<div class="notes" id="notes"></div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0, notesOn=false;
+  const counter=document.getElementById('counter');
+  const progress=document.getElementById('progress');
+  const notes=document.getElementById('notes');
+  function pad(n){return String(n).padStart(2,'0');}
+  function render(){
+    slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+    counter.textContent=pad(i+1)+' / '+pad(slides.length);
+    progress.style.width=((i)/(slides.length-1)*100)+'%';
+    if(notesOn) notes.innerHTML='<b>Nota '+pad(i+1)+':</b> '+(slides[i].dataset.notes||'—');
+  }
+  function fit(){
+    const tw=Math.min(1180, window.innerWidth*0.92);
+    const s=tw/1180;
+    const maxH=window.innerHeight*0.70;
+    document.querySelectorAll('.frame').forEach(f=>{
+      f.style.width=tw+'px';
+      const ifr=f.querySelector('iframe');
+      ifr.style.height='1300px';
+      ifr.style.transform='scale('+s+')';
+      f.style.height=Math.min(620*s,maxH)+'px';
+    });
+  }
+  window.addEventListener('resize',fit);
+  function go(d){i=Math.min(slides.length-1,Math.max(0,i+d));render();}
+  function toggleNotes(){notesOn=!notesOn;notes.classList.toggle('on',notesOn);render();}
+  function fs(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen&&document.exitFullscreen();}
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();go(1);}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(-1);}
+    else if(e.key==='Home'){i=0;render();}
+    else if(e.key==='End'){i=slides.length-1;render();}
+    else if(e.key==='n'||e.key==='N'){toggleNotes();}
+    else if(e.key==='f'||e.key==='F'){fs();}
+  });
+  document.addEventListener('click',e=>{
+    if(e.target.closest('a,button,.notes,.frame'))return;
+    const x=e.clientX/window.innerWidth;
+    go(x<0.32?-1:1);
+  });
+  fit();
+  render();
+</script>
+</body>
+</html>

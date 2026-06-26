@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Shorts Mastery — Logo</title>
+<style>
+  :root{--bg:#0a0a0f;--ink:#fff;--muted:#9aa0b4;--a1:#ff3d3d;--a2:#ff8a00;--card:#16161f;--line:#262633}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);padding:32px 22px 60px}
+  .wrap{max-width:1000px;margin:0 auto}
+  h1{font-size:26px;font-weight:800;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:6px 0 28px;font-size:15px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+  .card h2{font-size:15px;font-weight:700;margin-bottom:4px}
+  .card .tag{font-size:12px;font-weight:700;color:#0a0a0f;background:linear-gradient(90deg,var(--a1),var(--a2));padding:3px 9px;border-radius:999px}
+  .card .note{color:var(--muted);font-size:12px;margin:4px 0 14px}
+  .swatches{display:flex;gap:12px;margin-bottom:16px}
+  .sw{flex:1;border-radius:12px;display:grid;place-items:center;padding:18px;border:1px solid var(--line)}
+  .sw.light{background:#fff}.sw.dark{background:#0a0a0f}
+  .sw svg{width:120px;height:120px}
+  .sw.word svg{width:100%;height:auto}
+  .btn{display:block;width:100%;text-align:center;background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;
+    font-weight:800;border:none;border-radius:12px;padding:13px;font-size:14px;cursor:pointer}
+  .btn:hover{filter:brightness(1.08)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:#fff;margin-top:8px;font-weight:600}
+  .hint{background:#16161f;border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--muted);font-size:13px;margin-top:26px;line-height:1.6}
+  .hint b{color:#fff}
+  .wide{grid-column:1/-1}
+  .wide .swatches .sw{padding:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>AI Shorts Mastery — Logo</h1>
+  <div class="sub">Descarga el PNG cuadrado y súbelo como imagen de producto en Stripe. Recomendado: la variante 1.</div>
+
+  <div class="grid">
+
+    <!-- VARIANTE 1: gradiente + play (recomendada para Stripe) -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <h2>Variante 1 · Play</h2><span class="tag">Recomendada</span>
+      </div>
+      <div class="note">Pop sobre el blanco de Stripe. Legible a tamaño pequeño.</div>
+      <div class="swatches">
+        <div class="sw light">
+          <svg id="logoA" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff3d3d"/><stop offset="1" stop-color="#ff8a00"/></linearGradient></defs>
+            <rect x="0" y="0" width="1024" height="1024" rx="232" fill="url(#gA)"/>
+            <path d="M412 332 L412 692 L726 512 Z" fill="#fff" stroke="#fff" stroke-width="48" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="sw dark">
+          <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="gA2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff3d3d"/><stop offset="1" stop-color="#ff8a00"/></linearGradient></defs>
+            <rect x="0" y="0" width="1024" height="1024" rx="232" fill="url(#gA2)"/>
+            <path d="M412 332 L412 692 L726 512 Z" fill="#fff" stroke="#fff" stroke-width="48" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <button class="btn" onclick="dl('logoA',1024,1024,'asm-logo-play.png')">Descargar PNG 1024×1024</button>
+    </div>
+
+    <!-- VARIANTE 2: oscuro + shorts frame -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <h2>Variante 2 · Shorts</h2><span class="tag" style="background:#262633;color:#fff">Premium</span>
+      </div>
+      <div class="note">Cuadro vertical = vídeo corto. Look oscuro y premium.</div>
+      <div class="swatches">
+        <div class="sw light">
+          <svg id="logoB" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="gB" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff3d3d"/><stop offset="1" stop-color="#ff8a00"/></linearGradient></defs>
+            <rect x="0" y="0" width="1024" height="1024" rx="232" fill="#14141c"/>
+            <rect x="2" y="2" width="1020" height="1020" rx="231" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="4"/>
+            <rect x="332" y="226" width="360" height="572" rx="92" fill="none" stroke="url(#gB)" stroke-width="30"/>
+            <path d="M455 396 L455 628 L648 512 Z" fill="url(#gB)" stroke="url(#gB)" stroke-width="34" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="sw dark">
+          <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="gB2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff3d3d"/><stop offset="1" stop-color="#ff8a00"/></linearGradient></defs>
+            <rect x="0" y="0" width="1024" height="1024" rx="232" fill="#14141c"/>
+            <rect x="2" y="2" width="1020" height="1020" rx="231" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="4"/>
+            <rect x="332" y="226" width="360" height="572" rx="92" fill="none" stroke="url(#gB2)" stroke-width="30"/>
+            <path d="M455 396 L455 628 L648 512 Z" fill="url(#gB2)" stroke="url(#gB2)" stroke-width="34" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <button class="btn" onclick="dl('logoB',1024,1024,'asm-logo-shorts.png')">Descargar PNG 1024×1024</button>
+    </div>
+
+    <!-- VARIANTE 3: monograma ASM -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <h2>Variante 3 · Monograma</h2><span class="tag" style="background:#262633;color:#fff">Alt</span>
+      </div>
+      <div class="note">Iniciales ASM. Sobrio, tipo marca.</div>
+      <div class="swatches">
+        <div class="sw light">
+          <svg id="logoC" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="gC" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff3d3d"/><stop offset="1" stop-color="#ff8a00"/></linearGradient></defs>
+            <rect x="0" y="0" width="1024" height="1024" rx="232" fill="url(#gC)"/>
+            <text x="512" y="512" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="360" fill="#0a0a0f" letter-spacing="-8">ASM</text>
+          </svg>
+        </div>
+        <div class="sw dark">
+          <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="gC2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff3d3d"/><stop offset="1" stop-color="#ff8a00"/></linearGradient></defs>
+            <rect x="0" y="0" width="1024" height="1024" rx="232" fill="#14141c"/>
+            <text x="512" y="512" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="360" fill="url(#gC2)" letter-spacing="-8">ASM</text>
+          </svg>
+        </div>
+      </div>
+      <button class="btn" onclick="dl('logoC',1024,1024,'asm-logo-mono.png')">Descargar PNG 1024×1024</button>
+    </div>
+
+    <!-- WORDMARK horizontal (bonus) -->
+    <div class="card wide">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <h2>Wordmark horizontal (bonus)</h2><span class="tag" style="background:#262633;color:#fff">Cabeceras</span>
+      </div>
+      <div class="note">Para webs/firmas. Fondo transparente.</div>
+      <div class="swatches">
+        <div class="sw light word">
+          <svg id="logoW" viewBox="0 0 1280 340" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="gW" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff3d3d"/><stop offset="1" stop-color="#ff8a00"/></linearGradient></defs>
+            <rect x="20" y="50" width="240" height="240" rx="56" fill="url(#gW)"/>
+            <path d="M120 120 L120 220 L208 170 Z" fill="#fff" stroke="#fff" stroke-width="16" stroke-linejoin="round"/>
+            <text x="300" y="150" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="96" fill="#0a0a0f">AI Shorts</text>
+            <text x="300" y="262" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="96" fill="url(#gW)">Mastery</text>
+          </svg>
+        </div>
+        <div class="sw dark word">
+          <svg viewBox="0 0 1280 340" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="gW2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff3d3d"/><stop offset="1" stop-color="#ff8a00"/></linearGradient></defs>
+            <rect x="20" y="50" width="240" height="240" rx="56" fill="url(#gW2)"/>
+            <path d="M120 120 L120 220 L208 170 Z" fill="#fff" stroke="#fff" stroke-width="16" stroke-linejoin="round"/>
+            <text x="300" y="150" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="96" fill="#fff">AI Shorts</text>
+            <text x="300" y="262" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="96" fill="url(#gW2)">Mastery</text>
+          </svg>
+        </div>
+      </div>
+      <button class="btn" onclick="dl('logoW',1280,340,'asm-wordmark.png',true)">Descargar PNG 1280×340 (transparente)</button>
+    </div>
+
+  </div>
+
+  <div class="hint">
+    📌 <b>Para Stripe:</b> usa la <b>Variante 1</b> (cuadrada). En tu producto → <b>Editar producto</b> → <b>Imagen</b> → sube <code>asm-logo-play.png</code>. Stripe la muestra pequeña, por eso el icono va sin texto.<br>
+    💡 Si la descarga sale en blanco, prueba en Chrome/Safari (algún navegador bloquea el render de SVG a PNG por seguridad).
+  </div>
+</div>
+
+<script>
+  function dl(svgId,w,h,filename,transparent){
+    const svg=document.getElementById(svgId);
+    const xml=new XMLSerializer().serializeToString(svg);
+    const url='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(xml)));
+    const img=new Image();
+    img.onload=function(){
+      const c=document.createElement('canvas');c.width=w;c.height=h;
+      const ctx=c.getContext('2d');
+      if(!transparent){ctx.clearRect(0,0,w,h);}
+      ctx.drawImage(img,0,0,w,h);
+      const a=document.createElement('a');a.download=filename;a.href=c.toDataURL('image/png');
+      document.body.appendChild(a);a.click();a.remove();
+    };
+    img.onerror=function(){alert('No se pudo generar el PNG en este navegador. Prueba en Chrome.');};
+    img.src=url;
+  }
+</script>
+</body>
+</html>
