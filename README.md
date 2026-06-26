@@ -3,12 +3,9 @@
 Embudo completo (landing → ventas → checkout) para el curso **AI Shorts Mastery** (97/147 €).
 Páginas estáticas HTML, sin dependencias. Se sirven tal cual desde cualquier hosting estático.
 
-## Entrada
-- `index.html` — hub con enlaces a todas las páginas.
-
 ## Funnel
-- `clase-gratis.html` — landing de la **clase gratis** (pega aquí el embed de tu vídeo).
-- `ai-shorts-mastery-clase.html` — **presentación (deck)** de la clase para grabar el vídeo. `←/→` mover, `F` pantalla completa, `N` notas de orador.
+- `index.html` — **entrada = clase gratis** (la raíz del dominio). Pega aquí el embed de tu vídeo. CTA → página de ventas.
+- `ai-shorts-mastery-clase.html` — **presentación (deck)** de la clase para grabar el vídeo (uso interno, no enlazada). `←/→` mover, `F` pantalla completa, `N` notas de orador.
 - `ai-shorts-mastery-ventas.html` — **página de ventas** con el stack de valor (826 € → 147 €) y botones a Stripe.
 - `ai-shorts-mastery-logo.html` — kit de **logos** (descarga en PNG).
 
