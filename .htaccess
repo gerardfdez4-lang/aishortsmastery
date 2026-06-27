@@ -1,0 +1,4 @@
+# Proteger los leads: nadie puede descargar el CSV desde la web
+<Files "leads.csv">
+  Require all denied
+</Files>
