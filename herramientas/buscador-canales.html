@@ -8,67 +8,216 @@
   :root{--bg:#0a0a0f;--ink:#fff;--muted:#9aa0b4;--muted2:#6b7185;--a1:#ff3d3d;--a2:#ff8a00;--card:#16161f;--line:#262633;--good:#39d98a}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(900px 500px at 75% -10%,#20121f 0%,var(--bg) 55%),var(--bg);color:#e7e9f2;line-height:1.5;padding:34px 20px 70px}
-  .wrap{max-width:820px;margin:0 auto}
+  .wrap{max-width:880px;margin:0 auto}
   .grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
   .kick{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--a2);margin-bottom:8px}
   h1{font-size:clamp(24px,4.5vw,36px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:6px}
   .sub{color:var(--muted);font-size:15px;margin-bottom:20px}
-  .bar{display:flex;gap:10px;margin-bottom:6px}
-  #q{flex:1;padding:13px 14px;border:1px solid var(--line);border-radius:10px;background:#0d0d14;color:#fff;font-size:15px}
-  #q:focus{outline:none;border-color:var(--a2)}
-  #go{background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:800;border:none;border-radius:10px;padding:0 20px;font-size:15px;cursor:pointer}
-  .hint{color:var(--muted2);font-size:12px;margin-bottom:16px}
-  .msg{color:var(--muted);font-size:14px;margin:14px 0}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-  .v{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:#e7e9f2;display:block}
+  .tabs{display:flex;gap:8px;margin-bottom:18px}
+  .tab{flex:1;padding:11px;border:1px solid var(--line);border-radius:10px;background:#0d0d14;color:var(--muted);font-weight:700;font-size:14px;cursor:pointer;text-align:center}
+  .tab.on{background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;border-color:transparent}
+  .pane{display:none}.pane.on{display:block}
+  .bar{display:flex;gap:10px;flex-wrap:wrap}
+  select,input{flex:1;min-width:180px;padding:13px 14px;border:1px solid var(--line);border-radius:10px;background:#0d0d14;color:#fff;font-size:15px}
+  select:focus,input:focus{outline:none;border-color:var(--a2)}
+  .btn{background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:800;border:none;border-radius:10px;padding:0 22px;font-size:15px;cursor:pointer}
+  .opts{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;margin-top:10px}
+  .opts input{flex:none;min-width:0;width:auto}
+  .hint{color:var(--muted2);font-size:12px;margin:14px 0 0}
+  .msg{color:var(--muted);font-size:14px;margin:18px 0 6px}
+  .chead{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:16px 0 4px}
+  .chead img{width:48px;height:48px;border-radius:50%}
+  .chead b{font-size:16px;color:#fff;display:block}
+  .chead span{color:var(--muted);font-size:13px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .v{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .v a.th{display:block}
   .v img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#000;display:block}
-  .v .b{padding:11px 12px}
-  .v .t{font-size:13.5px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .v .b{padding:11px 12px;display:flex;flex-direction:column;flex:1}
+  .v .t{font-size:13.5px;font-weight:600;line-height:1.3;color:#e7e9f2;text-decoration:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .v .c{color:var(--muted);font-size:12px;margin-top:5px}
-  .v .views{color:var(--good);font-weight:800;font-size:14px;margin-top:4px}
+  .v .views{color:var(--good);font-weight:800;font-size:14px;margin-top:4px;margin-bottom:10px}
+  .v .gp{margin-top:auto;background:#1d1d2a;border:1px solid var(--line);color:#fff;font-weight:700;font-size:12.5px;padding:8px;border-radius:8px;cursor:pointer}
+  .v .gp:hover{border-color:var(--a2)}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--good);color:#06210f;font-weight:800;padding:11px 18px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}
+  .toast.show{opacity:1}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="kick">AI Shorts Mastery · Herramienta</div>
   <h1>Buscador de <span class="grad">canales</span></h1>
-  <div class="sub">Busca por nicho o tema y mira los vídeos con más visitas para inspirarte y hacer estudio de mercado. Datos públicos reales de YouTube.</div>
+  <div class="sub">Estudio de mercado con datos públicos reales de YouTube. Mira qué funciona, copia el formato (no el contenido) y saca tu prompt.</div>
 
-  <div class="bar">
-    <input id="q" placeholder="Ej: animales bailando, datos curiosos, qué pasaría si…" onkeydown="if(event.key==='Enter')buscar()">
-    <button id="go" onclick="buscar()">Buscar</button>
+  <div class="tabs">
+    <div class="tab on" id="tabN" onclick="setTab('N')">🔎 Por nicho</div>
+    <div class="tab" id="tabC" onclick="setTab('C')">📺 Por canal de referencia</div>
   </div>
-  <div class="hint">💡 Fíjate en los que tienen muchas visitas: ese formato funciona. Copia la estructura, no el contenido.</div>
+
+  <!-- NICHO -->
+  <div class="pane on" id="paneN">
+    <div class="bar">
+      <select id="nicho"></select>
+      <button class="btn" onclick="buscarNicho()">Buscar</button>
+    </div>
+    <label class="opts"><input type="checkbox" id="recent" checked> Solo vídeos del último mes (lo que está petando ahora)</label>
+    <div class="hint">💡 Te saca los vídeos con más visitas del nicho. Fíjate en el formato, el gancho y la duración.</div>
+  </div>
+
+  <!-- CANAL -->
+  <div class="pane" id="paneC">
+    <div class="bar">
+      <input id="ref" placeholder="Pega la URL del canal, su @handle o su nombre" onkeydown="if(event.key==='Enter')buscarCanal()">
+      <button class="btn" onclick="buscarCanal()">Analizar</button>
+    </div>
+    <div class="hint">💡 Te saca los vídeos MÁS vistos de ese canal. Luego dale a "Generar prompt" en el que más te guste.</div>
+  </div>
 
   <div class="msg" id="msg"></div>
+  <div id="chead"></div>
   <div class="grid" id="grid"></div>
 </div>
+<div class="toast" id="toast"></div>
+
 <script>
+  // 50 nichos (etiqueta -> búsqueda)
+  var NICHOS=[
+    ['— Infantil / familiar —',''],
+    ['Animales tiernos bailando (3D)','cute animals dancing 3d short'],
+    ['Bebés animales divertidos','funny baby animals 3d short'],
+    ['Personajes tiernos / mascotas','cute 3d character funny short'],
+    ['Canciones infantiles','nursery rhymes animation short'],
+    ['Aprender colores y números','learn colors numbers kids short'],
+    ['— Curiosidades / educativo —',''],
+    ['Datos curiosos','did you know facts shorts'],
+    ['Curiosidades de ciencia','science facts shorts'],
+    ['Curiosidades de historia','history facts shorts'],
+    ['Mitología explicada','mythology explained shorts'],
+    ['Espacio y universo','space facts shorts'],
+    ['Cuerpo humano','human body facts shorts'],
+    ['Comparaciones de tamaño','size comparison shorts'],
+    ['Datos de animales salvajes','wild animal facts shorts'],
+    ['Países y geografía','country comparison shorts'],
+    ['Inventos increíbles','amazing inventions shorts'],
+    ['— Hipótesis / escenarios —',''],
+    ['¿Qué pasaría si…?','what would happen if shorts'],
+    ['¿Quién sobrevive?','who survives shorts'],
+    ['¿Quién escapa primero?','who escapes first shorts'],
+    ['¿Quién ganaría?','who would win shorts'],
+    ['Situaciones extremas / POV','extreme pov scenario shorts'],
+    ['— Historias / narrativa —',''],
+    ['Mini historias con giro','short story plot twist shorts'],
+    ['Terror corto','scary stories shorts'],
+    ['Creepypasta','creepypasta shorts'],
+    ['Misterios sin resolver','unsolved mysteries shorts'],
+    ['Historias reales de supervivencia','true survival story shorts'],
+    ['Leyendas urbanas','urban legends shorts'],
+    ['— Visual / satisfying —',''],
+    ['Oddly satisfying','oddly satisfying shorts'],
+    ['ASMR visual','asmr visual shorts'],
+    ['Naturaleza cinematográfica','cinematic nature shorts'],
+    ['Ilusiones ópticas','optical illusion shorts'],
+    ['— Animales / criaturas —',''],
+    ['Animales actuando como humanos','animals acting like humans funny shorts'],
+    ['Criaturas fantásticas IA','fantasy creatures ai shorts'],
+    ['Dinosaurios 3D','dinosaurs 3d shorts'],
+    ['Gatos divertidos IA','funny cat ai shorts'],
+    ['— Aspiracional / lifestyle —',''],
+    ['Casas de lujo','luxury house tour shorts'],
+    ['Superdeportivos','supercars shorts'],
+    ['Ciudades del futuro','future city concept shorts'],
+    ['Viajes / lugares increíbles','beautiful travel places shorts'],
+    ['— Alto RPM —',''],
+    ['Motivación','motivation shorts'],
+    ['Estoicismo','stoicism shorts'],
+    ['Finanzas personales','personal finance shorts'],
+    ['Negocios / emprender','business tips shorts'],
+    ['Herramientas de IA','ai tools shorts'],
+    ['Productividad','productivity shorts'],
+    ['— Entretenimiento / listas —',''],
+    ['Rankings Top 5','top 5 ranking shorts'],
+    ['Comida gigante / imposible','giant food shorts'],
+    ['Recetas rápidas','quick recipe shorts'],
+    ['Curiosidades de comida','food facts shorts'],
+    ['Trucos de vida (life hacks)','life hacks shorts']
+  ];
+  var sel=document.getElementById('nicho');
+  NICHOS.forEach(function(o,i){
+    var op=document.createElement('option');
+    op.textContent=o[0]; op.value=o[1];
+    if(o[1]==='') op.disabled=true;
+    sel.appendChild(op);
+  });
+  sel.selectedIndex=1;
+
+  function setTab(t){
+    document.getElementById('tabN').classList.toggle('on',t==='N');
+    document.getElementById('tabC').classList.toggle('on',t==='C');
+    document.getElementById('paneN').classList.toggle('on',t==='N');
+    document.getElementById('paneC').classList.toggle('on',t==='C');
+    clear();
+  }
+  function clear(){document.getElementById('msg').textContent='';document.getElementById('chead').innerHTML='';document.getElementById('grid').innerHTML='';}
   function n(x){return Number(x).toLocaleString('es-ES');}
-  function buscar(){
-    var q=document.getElementById('q').value.trim();
-    if(!q){return;}
-    var msg=document.getElementById('msg'), grid=document.getElementById('grid');
-    grid.innerHTML=''; msg.textContent='Buscando…';
-    fetch('buscar-canales.php?q='+encodeURIComponent(q))
+  function esc(s){return s.replace(/</g,'&lt;').replace(/"/g,'&quot;');}
+  function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(function(){el.classList.remove('show');},1600);}
+
+  function genPrompt(title,id){
+    var p='Eres experto en prompts para IA de vídeo (Higgsfield). Aquí tienes un Short de referencia que funciona muy bien:\n'+
+      'Título: "'+title+'"\n'+
+      'Enlace: https://www.youtube.com/watch?v='+id+'\n\n'+
+      'Analiza su estilo, formato, ritmo y gancho. Reproduce ESE estilo (no el contenido) y dame UN solo prompt en INGLÉS para generar un vídeo parecido pero con MI tema: [ESCRIBE AQUÍ TU TEMA].\n'+
+      'Estructura: subject + action + environment + visual style + camera + lighting + mood. Máximo 60 palabras. Devuélveme solo el prompt, listo para pegar.';
+    navigator.clipboard.writeText(p).then(function(){toast('✅ Prompt copiado — pégalo en ChatGPT/Claude');},function(){toast('Copia manual: '+p);});
+  }
+  window.genPrompt=genPrompt;
+
+  function render(d){
+    var grid=document.getElementById('grid');
+    if(!d.items||!d.items.length){document.getElementById('msg').textContent='Sin resultados. Prueba otra opción.';return;}
+    document.getElementById('msg').textContent=d.items.length+' vídeos (ordenados por visitas)';
+    grid.innerHTML=d.items.map(function(v){
+      return '<div class="v"><a class="th" href="https://www.youtube.com/watch?v='+v.id+'" target="_blank" rel="noopener">'+
+        '<img src="'+v.thumb+'" referrerpolicy="no-referrer" alt=""></a>'+
+        '<div class="b">'+
+        '<a class="t" href="https://www.youtube.com/watch?v='+v.id+'" target="_blank" rel="noopener">'+esc(v.title)+'</a>'+
+        '<div class="c">'+esc(v.channel)+'</div>'+
+        '<div class="views">'+n(v.views)+' visitas</div>'+
+        '<button class="gp" onclick="genPrompt(this.dataset.t,this.dataset.i)" data-t="'+esc(v.title)+'" data-i="'+v.id+'">✨ Generar prompt</button>'+
+        '</div></div>';
+    }).join('');
+  }
+  function fail(err){
+    var msg=document.getElementById('msg');
+    if(err==='falta_api_key') msg.innerHTML='⚠️ Falta configurar la API key de YouTube en el servidor.';
+    else if(err==='canal_no_encontrado') msg.textContent='No encontré ese canal. Prueba con la URL completa o el @handle.';
+    else msg.textContent='No se pudo buscar ahora mismo (puede ser la cuota diaria). Inténtalo más tarde.';
+  }
+
+  function buscarNicho(){
+    var q=sel.value; if(!q) return;
+    var recent=document.getElementById('recent').checked?'1':'0';
+    clear();document.getElementById('msg').textContent='Buscando…';
+    fetch('buscar-canales.php?mode=niche&recent='+recent+'&q='+encodeURIComponent(q))
+      .then(function(r){return r.json();})
+      .then(function(d){if(!d.ok){fail(d.error);return;}render(d);})
+      .catch(function(){fail();});
+  }
+  function buscarCanal(){
+    var ref=document.getElementById('ref').value.trim(); if(!ref) return;
+    clear();document.getElementById('msg').textContent='Analizando canal…';
+    fetch('buscar-canales.php?mode=channel&ref='+encodeURIComponent(ref))
       .then(function(r){return r.json();})
       .then(function(d){
-        if(!d.ok){
-          if(d.error==='falta_api_key'){ msg.innerHTML='⚠️ Falta configurar la API key de YouTube en el servidor.'; }
-          else { msg.textContent='No se pudo buscar ahora mismo. Inténtalo de nuevo.'; }
-          return;
+        if(!d.ok){fail(d.error);return;}
+        if(d.channel){
+          document.getElementById('chead').innerHTML='<div class="chead">'+
+            (d.channel.thumb?'<img src="'+d.channel.thumb+'" referrerpolicy="no-referrer">':'')+
+            '<div><b>'+esc(d.channel.title)+'</b><span>'+n(d.channel.subs)+' suscriptores</span></div></div>';
         }
-        if(!d.items.length){ msg.textContent='Sin resultados. Prueba otra palabra.'; return; }
-        msg.textContent=d.items.length+' vídeos (ordenados por visitas)';
-        grid.innerHTML=d.items.map(function(v){
-          return '<a class="v" href="https://www.youtube.com/watch?v='+v.id+'" target="_blank" rel="noopener">'+
-            '<img src="'+v.thumb+'" referrerpolicy="no-referrer" alt="">'+
-            '<div class="b"><div class="t">'+v.title.replace(/</g,'&lt;')+'</div>'+
-            '<div class="c">'+v.channel.replace(/</g,'&lt;')+'</div>'+
-            '<div class="views">'+n(v.views)+' visitas</div></div></a>';
-        }).join('');
+        render(d);
       })
-      .catch(function(){ msg.textContent='Error de conexión.'; });
+      .catch(function(){fail();});
   }
 </script>
 </body>
