@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Títulos, hooks y hashtags · AI Shorts Mastery</title>
+<style>
+  :root{--bg:#0a0a0f;--ink:#fff;--muted:#9aa0b4;--muted2:#6b7185;--a1:#ff3d3d;--a2:#ff8a00;--card:#16161f;--line:#262633;--good:#39d98a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(900px 500px at 75% -10%,#20121f 0%,var(--bg) 55%),var(--bg);color:#e7e9f2;line-height:1.5;padding:34px 20px 70px}
+  .wrap{max-width:760px;margin:0 auto}
+  .grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .kick{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--a2);margin-bottom:8px}
+  h1{font-size:clamp(24px,4.5vw,36px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:6px}
+  .sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+  label{display:block;font-size:12px;color:var(--muted);font-weight:600;margin:0 0 5px}
+  input,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#0d0d14;color:#fff;font-size:14px}
+  input:focus,select:focus{outline:none;border-color:var(--a2)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:6px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  h2{font-size:16px;font-weight:700;color:#fff;margin:26px 0 8px}
+  .item{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:8px}
+  .item span{flex:1;font-size:14.5px}
+  .item button{flex:none;background:#0d0d14;border:1px solid var(--line);color:#fff;font-weight:700;font-size:12px;padding:5px 10px;border-radius:8px;cursor:pointer}
+  .item button:hover{border-color:var(--a2)}
+  .tip{color:var(--muted2);font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick">AI Shorts Mastery · Herramienta</div>
+  <h1>Títulos, hooks y <span class="grad">hashtags</span></h1>
+  <div class="sub">Escribe tu tema, elige el nicho y genera títulos con gancho, hooks para los 2 primeros segundos y un pack de hashtags.</div>
+
+  <div class="row">
+    <div><label>Tu tema</label><input id="tema" placeholder="un gato en la oficina / la bomba nuclear" value=""></div>
+    <div><label>Nicho</label><select id="nicho">
+      <option value="general">General</option>
+      <option value="animales">Animales/personajes</option>
+      <option value="whatif">¿Qué pasaría si…?</option>
+      <option value="survive">¿Quién sobrevive?</option>
+      <option value="facts">Datos curiosos</option>
+      <option value="terror">Terror</option>
+      <option value="satisfying">Satisfying</option>
+    </select></div>
+  </div>
+
+  <h2>🎯 Títulos</h2>
+  <div id="titulos"></div>
+  <h2>🪝 Hooks (primeros 2 s)</h2>
+  <div id="hooks"></div>
+  <h2>#️⃣ Hashtags</h2>
+  <div id="hashtags"></div>
+  <div class="tip">💡 El título genera curiosidad, no clickbait engañoso. Usa siempre #Shorts.</div>
+</div>
+<script>
+  var T=document.getElementById('tema'), Nsel=document.getElementById('nicho');
+  var titulos=function(t){return [
+    "¿Qué pasaría si "+t+"?",
+    "Nadie sabe esto sobre "+t+" 🤯",
+    t+"… espera al final 😮",
+    "Esto es lo que pasa con "+t,
+    "El secreto de "+t+" que nadie cuenta"
+  ];};
+  var hooks=function(t){return [
+    "\"Mira lo que pasa con "+t+"…\"",
+    "\"Esto sobre "+t+" te va a sorprender.\"",
+    "\"Nunca habías visto "+t+" así.\"",
+    "\"Espera a ver "+t+" en 3, 2, 1…\""
+  ];};
+  var packs={
+    general:"#Shorts #viral #fyp #curiosidades",
+    animales:"#Shorts #cute #animals #funny #3danimation",
+    whatif:"#Shorts #whatif #scifi #curiosidades #facts",
+    survive:"#Shorts #survival #challenge #story #animation",
+    facts:"#Shorts #didyouknow #facts #curiosidades #learn",
+    terror:"#Shorts #scary #horror #creepy #story",
+    satisfying:"#Shorts #satisfying #asmr #relaxing #oddlysatisfying"
+  };
+  function item(text){return '<div class="item"><span>'+text.replace(/</g,'&lt;')+'</span><button onclick="cpv(this)">Copiar</button></div>';}
+  function render(){
+    var t=(T.value.trim()||"[tu tema]");
+    document.getElementById('titulos').innerHTML=titulos(t).map(item).join('');
+    document.getElementById('hooks').innerHTML=hooks(t).map(item).join('');
+    document.getElementById('hashtags').innerHTML=item(packs[Nsel.value]||packs.general);
+  }
+  T.addEventListener('input',render); Nsel.addEventListener('change',render); render();
+  function cpv(btn){var t=btn.previousElementSibling.innerText;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){f(btn);},function(){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();f(btn);});}
+  function f(b){var o=b.textContent;b.textContent='✓';setTimeout(function(){b.textContent='Copiar';},1200);}
+</script>
+</body>
+</html>

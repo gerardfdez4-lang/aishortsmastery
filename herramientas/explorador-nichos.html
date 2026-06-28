@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explorador de nichos · AI Shorts Mastery</title>
+<style>
+  :root{--bg:#0a0a0f;--ink:#fff;--muted:#9aa0b4;--muted2:#6b7185;--a1:#ff3d3d;--a2:#ff8a00;--card:#16161f;--line:#262633;--good:#39d98a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(900px 500px at 75% -10%,#20121f 0%,var(--bg) 55%),var(--bg);color:#e7e9f2;line-height:1.5;padding:34px 20px 70px}
+  .wrap{max-width:860px;margin:0 auto}
+  .grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .kick{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--a2);margin-bottom:8px}
+  h1{font-size:clamp(24px,4.5vw,36px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:6px}
+  .sub{color:var(--muted);font-size:15px;margin-bottom:20px}
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+  #q{flex:1;min-width:180px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#0d0d14;color:#fff;font-size:14px}
+  #q:focus{outline:none;border-color:var(--a2)}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 4px}
+  .chip{font-size:12px;font-weight:700;color:#cdd2e2;background:var(--card);border:1px solid var(--line);padding:6px 12px;border-radius:999px;cursor:pointer}
+  .chip.on{color:#0a0a0f;background:linear-gradient(90deg,var(--a1),var(--a2));border-color:transparent}
+  .count{color:var(--muted2);font-size:13px;margin:8px 0}
+  .list{display:flex;flex-direction:column;gap:10px}
+  .n{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .n .top{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+  .n .num{color:var(--a2);font-weight:800;font-size:14px;min-width:26px}
+  .n .name{font-weight:700;color:#fff;font-size:15px}
+  .n .star{color:var(--good);font-weight:800}
+  .n .tag{margin-left:auto;font-size:11px;font-weight:700;color:#0a0a0f;background:linear-gradient(90deg,var(--a1),var(--a2));padding:2px 9px;border-radius:999px;white-space:nowrap}
+  .n .why{color:var(--muted);font-size:13.5px;padding-left:36px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick">AI Shorts Mastery · Herramienta</div>
+  <h1>Explorador de <span class="grad">nichos</span></h1>
+  <div class="sub">30 nichos de alto potencial. Filtra por categoría, busca o muestra solo los ★ para empezar.</div>
+
+  <div class="controls"><input id="q" placeholder="Buscar nicho… (ej: animales, terror, datos)"></div>
+  <div class="chips" id="chips"></div>
+  <div class="count" id="count"></div>
+  <div class="list" id="list"></div>
+</div>
+<script>
+  var N=[
+   [1,"Canciones infantiles animadas","Infantil","Catálogo infinito, global, sin idioma",0],
+   [2,"Animales/personajes que bailan","Infantil","Loops cortos + música; IA ideal (estilo CocoBunny)",1],
+   [3,"Aprende jugando (colores, números)","Infantil","Combinaciones infinitas, visual y simple",0],
+   [4,"Mini-cuentos con moraleja","Infantil","Cuentos infinitos en escenas animadas",0],
+   [5,"Datos curiosos / did you know","Curiosidades","Un dato + la escena que lo ilustra; muy compartible",1],
+   [6,"Ciencia explicada en 30 s","Curiosidades","¿Por qué pasa X?; la IA visualiza el fenómeno",0],
+   [7,"Historia: qué pasó con…","Curiosidades","Toda la historia como material; IA recrea épocas",0],
+   [8,"Mitología","Curiosidades","Dioses y criaturas; la IA brilla con seres fantásticos",0],
+   [9,"Espacio / universo","Curiosidades","Planetas, agujeros negros; cinematográfico",0],
+   [10,"Comparaciones de tamaño","Curiosidades","¿Cómo de grande es…?; muy visual",0],
+   [11,"¿Qué pasaría si…?","Hipótesis","Escenario extremo + consecuencias (estilo El Calacas)",1],
+   [12,"¿Quién sobrevive/escapa primero?","Hipótesis","Personajes con roles; el espectador apuesta",1],
+   [13,"¿Quién ganaría? / versus","Hipótesis","Enfrentamientos; combinaciones sin fin",0],
+   [14,"POV inmersivo","Hipótesis","Te despiertas en/como…; muy adictivo",0],
+   [15,"Mini-historias con giro final","Historias","30 s con twist; 2-3 escenas + voz en off",0],
+   [16,"Terror corto / creepy","Historias","La IA borda ambientes oscuros",0],
+   [17,"Misterios sin resolver","Historias","Recreaciones atmosféricas",0],
+   [18,"Historias reales increíbles","Historias","Sobrevivió a…; la IA recrea la escena",0],
+   [19,"Oddly satisfying","Visual","Visuales hipnóticos; la IA genera lo imposible",0],
+   [20,"ASMR visual / paisajes relajantes","Visual","Paisajes de ensueño en bucle",0],
+   [21,"Naturaleza cinematográfica","Visual","Tomas de documental imposibles de grabar",0],
+   [22,"Animales como humanos","Animales","Comedia; el rey de los Shorts",1],
+   [23,"Criaturas fantásticas si existieran","Animales","Dragones, híbridos; IA ideal",0],
+   [24,"Lujo de ensueño","Lifestyle","Casas, coches, islas; RPM mejor",0],
+   [25,"Arquitectura / ciudades del futuro","Lifestyle","La casa del futuro; la IA brilla",0],
+   [26,"Motivación / estoicismo","RPM alto","Frase + visual cinematográfico (diferénciate)",0],
+   [27,"Finanzas para principiantes","RPM alto","RPM alto, menos volumen; ideal 2º canal",0],
+   [28,"Tecnología / novedades de IA","RPM alto","Esta IA hace X; temas infinitos",0],
+   [29,"Rankings / Top 5 visuales","Entretenimiento","Una escena por puesto; ideas infinitas",0],
+   [30,"Comida imposible / gigante","Entretenimiento","¿Y si la comida fuera…?; muy visual",0]
+  ];
+  var cats=["Todos","★ Top 5"].concat(N.map(function(x){return x[2];}).filter(function(v,i,a){return a.indexOf(v)===i;}));
+  var active="Todos";
+  var chips=document.getElementById('chips');
+  cats.forEach(function(c){var b=document.createElement('button');b.className='chip'+(c==='Todos'?' on':'');b.textContent=c;b.onclick=function(){active=c;[].forEach.call(chips.children,function(x){x.classList.toggle('on',x.textContent===c);});render();};chips.appendChild(b);});
+  document.getElementById('q').addEventListener('input',render);
+  function render(){
+    var q=document.getElementById('q').value.toLowerCase().trim();
+    var rows=N.filter(function(x){
+      if(active==='★ Top 5' && !x[4]) return false;
+      if(active!=='Todos' && active!=='★ Top 5' && x[2]!==active) return false;
+      if(q && (x[1]+' '+x[2]+' '+x[3]).toLowerCase().indexOf(q)<0) return false;
+      return true;
+    });
+    document.getElementById('count').textContent=rows.length+' nicho'+(rows.length===1?'':'s');
+    document.getElementById('list').innerHTML=rows.map(function(x){
+      return '<div class="n"><div class="top"><span class="num">'+x[0]+'</span><span class="name">'+x[1]+(x[4]?' <span class="star">★</span>':'')+'</span><span class="tag">'+x[2]+'</span></div><div class="why">'+x[3]+'</div></div>';
+    }).join('') || '<div class="why" style="padding:0">Sin resultados.</div>';
+  }
+  render();
+</script>
+</body>
+</html>

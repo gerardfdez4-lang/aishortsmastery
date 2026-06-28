@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de prompts · AI Shorts Mastery</title>
+<style>
+  :root{--bg:#0a0a0f;--ink:#fff;--muted:#9aa0b4;--muted2:#6b7185;--a1:#ff3d3d;--a2:#ff8a00;--card:#16161f;--line:#262633;--good:#39d98a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(900px 500px at 75% -10%,#20121f 0%,var(--bg) 55%),var(--bg);color:#e7e9f2;line-height:1.5;padding:34px 20px 70px}
+  .wrap{max-width:760px;margin:0 auto}
+  .grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .kick{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--a2);margin-bottom:8px}
+  h1{font-size:clamp(24px,4.5vw,36px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:6px}
+  .sub{color:var(--muted);font-size:15px;margin-bottom:24px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  label{display:block;font-size:12px;color:var(--muted);font-weight:600;margin:0 0 5px}
+  input,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#0d0d14;color:#fff;font-size:14px}
+  input:focus,select:focus{outline:none;border-color:var(--a2)}
+  .full{grid-column:1/-1}
+  .out{background:#0d0d14;border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:18px;position:relative}
+  .out pre{white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,Menlo,monospace;font-size:14px;color:#d7dae6;line-height:1.6}
+  .copy{position:absolute;top:10px;right:10px;background:var(--card);border:1px solid var(--line);color:#fff;font-weight:700;font-size:12px;padding:6px 11px;border-radius:8px;cursor:pointer}
+  .copy:hover{border-color:var(--a2)}
+  h2{font-size:16px;font-weight:700;color:#fff;margin:30px 0 8px}
+  .tip{color:var(--muted2);font-size:13px;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick">AI Shorts Mastery · Herramienta</div>
+  <h1>Generador de <span class="grad">prompts</span></h1>
+  <div class="sub">Rellena los campos y copia tu prompt en inglés, listo para Higgsfield. Sigue la fórmula que da vídeos que enganchan.</div>
+
+  <div class="grid">
+    <div class="full"><label>Sujeto (quién/qué)</label><input id="subject" placeholder="a cute baby duck / a giant tsunami / a cat in a suit"></div>
+    <div class="full"><label>Acción (qué hace)</label><input id="action" placeholder="dancing happily / towering over a city / typing on a laptop"></div>
+    <div class="full"><label>Entorno (dónde)</label><input id="env" placeholder="in a sunny green meadow / a modern coastal city at sunset"></div>
+    <div><label>Estilo</label><select id="style">
+      <option>3D Pixar-style</option><option>hyperrealistic 3D render</option><option>cinematic photoreal</option><option>claymation</option><option>anime style</option><option>2D cartoon</option></select></div>
+    <div><label>Cámara / plano</label><select id="cam">
+      <option>wide establishing shot</option><option>medium close-up</option><option>macro extreme close-up</option><option>low-angle shot</option><option>aerial drone shot</option><option>slow zoom in</option><option>tracking shot</option></select></div>
+    <div><label>Iluminación</label><select id="light">
+      <option>soft warm lighting</option><option>dramatic volumetric lighting</option><option>golden hour</option><option>soft studio lighting</option><option>neon cyberpunk lighting</option><option>cold desaturated tones</option></select></div>
+    <div><label>Mood</label><select id="mood">
+      <option>cheerful joyful mood</option><option>ominous epic atmosphere</option><option>tense suspenseful mood</option><option>dreamy</option><option>awe-inspiring</option><option>oddly satisfying</option></select></div>
+  </div>
+
+  <div class="out"><button class="copy" onclick="cp(this,'pout')">Copiar</button><pre id="pout">Rellena los campos…</pre></div>
+
+  <h2>🪝 Meta-prompt (que la IA te escriba el prompt)</h2>
+  <div class="sub" style="margin:0 0 6px">Pega tu vídeo de referencia en Claude/ChatGPT con esto:</div>
+  <div class="out"><button class="copy" onclick="cp(this,'meta')">Copiar</button><pre id="meta">Eres experto en prompts para IA de vídeo (Higgsfield). Te describo un Short de referencia: [PEGA EL ENLACE O DESCRÍBELO]. Analiza su ESTILO y formato (no su contenido) y devuélveme UN prompt en INGLÉS para crear uno igual pero con MI tema: [TU TEMA]. Fórmula: [subject] + [action] + [environment] + [visual style] + [camera/shot] + [lighting] + [mood]. Máximo 60 palabras. Solo el prompt.</pre></div>
+
+  <div class="tip">💡 Consejo: sé concreto y visual, una sola escena clara, y al iterar cambia <b style="color:#fff">una variable cada vez</b>.</div>
+</div>
+<script>
+  var ids=['subject','action','env','style','cam','light','mood'];
+  function build(){
+    var v=function(id){return document.getElementById(id).value.trim();};
+    var s=v('subject')||'[subject]', a=v('action')||'[action]', e=v('env')||'[environment]';
+    var out=s+' '+a+', '+e+', '+v('style')+', '+v('cam')+', '+v('light')+', high detail, smooth motion, '+v('mood');
+    document.getElementById('pout').textContent=out;
+  }
+  ids.forEach(function(id){document.getElementById(id).addEventListener('input',build);document.getElementById(id).addEventListener('change',build);});
+  build();
+  function cp(btn,id){var t=document.getElementById(id).innerText;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){f(btn);},function(){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();f(btn);});}
+  function f(b){var o=b.textContent;b.textContent='¡Copiado! ✓';setTimeout(function(){b.textContent='Copiar';},1400);}
+</script>
+</body>
+</html>

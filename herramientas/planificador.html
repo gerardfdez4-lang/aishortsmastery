@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planificador y checklist · AI Shorts Mastery</title>
+<style>
+  :root{--bg:#0a0a0f;--ink:#fff;--muted:#9aa0b4;--muted2:#6b7185;--a1:#ff3d3d;--a2:#ff8a00;--card:#16161f;--line:#262633;--good:#39d98a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(900px 500px at 75% -10%,#20121f 0%,var(--bg) 55%),var(--bg);color:#e7e9f2;line-height:1.5;padding:34px 20px 70px}
+  .wrap{max-width:720px;margin:0 auto}
+  .grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .kick{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--a2);margin-bottom:8px}
+  h1{font-size:clamp(24px,4.5vw,36px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:6px}
+  .sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+  h2{font-size:17px;font-weight:700;color:#fff;margin:26px 0 10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  label{display:block;font-size:12px;color:var(--muted);font-weight:600;margin:0 0 5px}
+  input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#0d0d14;color:#fff;font-size:14px}
+  input:focus{outline:none;border-color:var(--a2)}
+  ol{margin:4px 0 0 18px}ol li{margin:6px 0;color:#dfe2ee;font-size:14.5px}
+  .chk{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}
+  .chk:last-child{border-bottom:none}
+  .chk .box{flex:none;width:20px;height:20px;border-radius:5px;border:2px solid var(--muted2);display:grid;place-items:center;font-size:13px;color:#0a0a0f;font-weight:900}
+  .chk.done .box{background:var(--good);border-color:var(--good)}
+  .chk.done span{color:var(--muted2);text-decoration:line-through}
+  .chk span{font-size:14.5px}
+  .reset{background:none;border:1px solid var(--line);color:var(--muted);font-size:12px;padding:6px 11px;border-radius:8px;cursor:pointer;margin-top:12px}
+  .saved{color:var(--good);font-size:12px;margin-left:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick">AI Shorts Mastery · Herramienta</div>
+  <h1>Planificador y <span class="grad">checklist</span></h1>
+  <div class="sub">Tu sistema para subir cada día sin quemarte. Se guarda solo en este navegador.</div>
+
+  <h2>📅 Mi plan semanal <span class="saved" id="saved"></span></h2>
+  <div class="card">
+    <div class="row">
+      <div><label>Día de lote (producción)</label><input id="p_dia" placeholder="Lunes"></div>
+      <div><label>Hora fija de publicación</label><input id="p_hora" placeholder="18:00"></div>
+      <div><label>Meta semanal (vídeos)</label><input id="p_meta" placeholder="7"></div>
+      <div><label>Métrica que miro</label><input id="p_metr" placeholder="retención + vistas"></div>
+    </div>
+  </div>
+
+  <h2>⚙️ El día de lote (2-3 h)</h2>
+  <div class="card"><ol>
+    <li>Saca 7 ideas (usa el generador de prompts / ideas).</li>
+    <li>Genera los 7 clips con IA.</li>
+    <li>Monta y subtitula los 7.</li>
+    <li>Programa 1/día a tu hora fija en YouTube Studio.</li>
+    <li>El resto de la semana: responder comentarios 5 min/día.</li>
+  </ol></div>
+
+  <h2>✅ Checklist antes de publicar</h2>
+  <div class="card" id="checklist"></div>
+  <button class="reset" onclick="resetChk()">Reiniciar checklist</button>
+</div>
+<script>
+  var KEY='asm_plan';
+  var plan=['p_dia','p_hora','p_meta','p_metr'];
+  function load(){try{var s=JSON.parse(localStorage.getItem(KEY)||'{}');plan.forEach(function(id){if(s[id])document.getElementById(id).value=s[id];});return s;}catch(e){return {};}}
+  function save(){var s={};plan.forEach(function(id){s[id]=document.getElementById(id).value;});s._chk=getChk();try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}flash();}
+  function flash(){var el=document.getElementById('saved');el.textContent='guardado ✓';clearTimeout(window._t);window._t=setTimeout(function(){el.textContent='';},1200);}
+  plan.forEach(function(id){document.getElementById(id).addEventListener('input',save);});
+
+  var items=[
+    "Hook potente en los 2 primeros segundos",
+    "Duración 15-40 s, cortes ágiles, sin relleno",
+    "Subtítulos con tu estilo (legibles, centrados)",
+    "Música/sonido seguro (sin copyright) y pegadizo",
+    "Vídeo vertical 9:16, buena calidad",
+    "Título con gancho + descripción + #Shorts y hashtags",
+    "Ajuste \"¿es para niños?\" declarado bien (COPPA)",
+    "Es original (transformado, no copiado)",
+    "Programado a tu hora fija"
+  ];
+  var s0=load();
+  var chkState=(s0._chk)||[];
+  function renderChk(){
+    document.getElementById('checklist').innerHTML=items.map(function(t,i){
+      var done=chkState[i]?' done':'';
+      return '<div class="chk'+done+'" onclick="toggle('+i+')"><span class="box">'+(chkState[i]?'✓':'')+'</span><span>'+t+'</span></div>';
+    }).join('');
+  }
+  function getChk(){return items.map(function(_,i){return !!chkState[i];});}
+  function toggle(i){chkState[i]=!chkState[i];renderChk();save();}
+  function resetChk(){chkState=[];renderChk();save();}
+  renderChk();
+</script>
+</body>
+</html>

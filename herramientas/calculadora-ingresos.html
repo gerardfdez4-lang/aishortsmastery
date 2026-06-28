@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de ingresos · AI Shorts Mastery</title>
+<style>
+  :root{--bg:#0a0a0f;--ink:#fff;--muted:#9aa0b4;--muted2:#6b7185;--a1:#ff3d3d;--a2:#ff8a00;--card:#16161f;--line:#262633;--good:#39d98a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(900px 500px at 75% -10%,#20121f 0%,var(--bg) 55%),var(--bg);color:#e7e9f2;line-height:1.5;padding:34px 20px 70px}
+  .wrap{max-width:680px;margin:0 auto}
+  .grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .kick{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--a2);margin-bottom:8px}
+  h1{font-size:clamp(24px,4.5vw,36px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:6px}
+  .sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+  .field{margin-bottom:16px}
+  .field .lab{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .field .val{color:#fff;font-weight:700}
+  input[type=range]{width:100%}
+  .res{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-top:18px;text-align:center}
+  .res .big{font-size:clamp(38px,9vw,64px);font-weight:900;letter-spacing:-.02em;line-height:1}
+  .res .lbl{color:var(--muted);font-size:14px;margin-top:4px}
+  .res .row{display:flex;justify-content:space-around;margin-top:18px;gap:10px;flex-wrap:wrap}
+  .res .row div b{display:block;font-size:20px;color:#fff;font-weight:800}
+  .res .row div span{color:var(--muted2);font-size:12px}
+  .tip{color:var(--muted2);font-size:13px;margin-top:16px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick">AI Shorts Mastery · Herramienta</div>
+  <h1>Calculadora de <span class="grad">ingresos</span></h1>
+  <div class="sub">Una estimación orientativa según tu volumen y RPM. Mueve los controles.</div>
+
+  <div class="field"><div class="lab"><span>Vídeos al mes</span><span class="val" id="vVid">30</span></div><input type="range" id="vid" min="5" max="120" step="1" value="30"></div>
+  <div class="field"><div class="lab"><span>Visitas medias por vídeo</span><span class="val" id="vViews">50.000</span></div><input type="range" id="views" min="1000" max="3000000" step="1000" value="50000"></div>
+  <div class="field"><div class="lab"><span>RPM (€ por 1.000 visitas)</span><span class="val" id="vRpm">0,12 €</span></div><input type="range" id="rpm" min="0.02" max="1.5" step="0.01" value="0.12"></div>
+
+  <div class="res">
+    <div class="big grad" id="mes">0 €</div>
+    <div class="lbl">estimado al mes</div>
+    <div class="row">
+      <div><b id="anio">0 €</b><span>al año</span></div>
+      <div><b id="totviews">0</b><span>visitas/mes</span></div>
+    </div>
+  </div>
+
+  <div class="tip">⚠️ Es una <b>estimación</b>, no una promesa. El RPM real varía mucho por país, época y tipo de contenido (el infantil "para niños" suele tener RPM más bajo). Lo que controlas de verdad es el <b>volumen</b> y la <b>constancia</b>.</div>
+</div>
+<script>
+  function eur(n){return Math.round(n).toLocaleString('es-ES');}
+  function calc(){
+    var vid=+document.getElementById('vid').value;
+    var views=+document.getElementById('views').value;
+    var rpm=+document.getElementById('rpm').value;
+    var totalViews=vid*views;
+    var mes=totalViews/1000*rpm;
+    document.getElementById('vVid').textContent=vid;
+    document.getElementById('vViews').textContent=eur(views);
+    document.getElementById('vRpm').textContent=rpm.toFixed(2).replace('.',',')+' €';
+    document.getElementById('mes').textContent=eur(mes)+' €';
+    document.getElementById('anio').textContent=eur(mes*12)+' €';
+    document.getElementById('totviews').textContent=eur(totalViews);
+  }
+  ['vid','views','rpm'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
+  calc();
+</script>
+</body>
+</html>
