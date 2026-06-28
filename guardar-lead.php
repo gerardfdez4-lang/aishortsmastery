@@ -4,16 +4,18 @@ header('Content-Type: application/json; charset=utf-8');
 $email = isset($_POST['email']) ? trim($_POST['email']) : '';
 $tel   = isset($_POST['telefono']) ? trim($_POST['telefono']) : '';
 
-// validación mínima
 if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
   http_response_code(400);
   echo json_encode(['ok' => false, 'error' => 'email_invalido']);
   exit;
 }
 
-$file = __DIR__ . '/leads.csv';
-$nuevo = !file_exists($file);
+// Guardar FUERA de la carpeta web (sobrevive a los despliegues de Git y no es accesible por web)
+$dir = dirname($_SERVER['DOCUMENT_ROOT']) . '/asm-data';
+if (!is_dir($dir)) { @mkdir($dir, 0775, true); }
+$file = (is_dir($dir) && is_writable($dir)) ? $dir . '/leads.csv' : __DIR__ . '/leads.csv';
 
+$nuevo = !file_exists($file);
 $fh = fopen($file, 'a');
 if ($fh === false) {
   http_response_code(500);
@@ -21,7 +23,6 @@ if ($fh === false) {
   exit;
 }
 
-// cabecera + BOM (para que Excel muestre bien los acentos) la primera vez
 if ($nuevo) {
   fwrite($fh, "\xEF\xBB\xBF");
   fputcsv($fh, ['fecha', 'email', 'telefono', 'ip', 'navegador']);

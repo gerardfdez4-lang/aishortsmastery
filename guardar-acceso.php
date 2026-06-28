@@ -9,9 +9,12 @@ if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
   exit;
 }
 
-$file = __DIR__ . '/compras.csv';
-$nuevo = !file_exists($file);
+// Guardar FUERA de la carpeta web (sobrevive a los despliegues de Git y no es accesible por web)
+$dir = dirname($_SERVER['DOCUMENT_ROOT']) . '/asm-data';
+if (!is_dir($dir)) { @mkdir($dir, 0775, true); }
+$file = (is_dir($dir) && is_writable($dir)) ? $dir . '/compras.csv' : __DIR__ . '/compras.csv';
 
+$nuevo = !file_exists($file);
 $fh = fopen($file, 'a');
 if ($fh === false) {
   http_response_code(500);
@@ -27,7 +30,7 @@ if ($nuevo) {
 fputcsv($fh, [
   date('Y-m-d H:i:s'),
   $email,
-  'NO',                       // marca aquí "SI" cuando lo invites en Notion
+  'NO',
   isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '',
 ]);
 fclose($fh);
