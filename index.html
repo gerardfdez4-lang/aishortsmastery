@@ -70,12 +70,12 @@
       <input type="email" id="email" name="email" placeholder="tucorreo@email.com" autocomplete="email" required>
     </div>
     <div class="field">
-      <label for="telefono">Tu teléfono (WhatsApp)</label>
-      <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" autocomplete="tel" required>
+      <label for="telefono">Tu teléfono <span style="color:var(--muted2)">(opcional)</span></label>
+      <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" autocomplete="tel">
     </div>
     <label class="consent"><input type="checkbox" id="consent" required> Acepto recibir la clase y comunicaciones de AI Shorts Mastery. Puedo darme de baja cuando quiera.</label>
     <button class="btn" type="submit" id="btn">Ver la clase gratis →</button>
-    <div class="err" id="err">Revisa el email, el teléfono y la casilla de consentimiento.</div>
+    <div class="err" id="err">Revisa el email y acepta el consentimiento.</div>
     <div class="privacy">🔒 Tus datos están a salvo. No spam.</div>
   </form>
 
@@ -121,7 +121,7 @@
     var tel=document.getElementById('telefono').value.trim();
     var ok=document.getElementById('consent').checked;
     var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    var telOk=tel.replace(/[^0-9]/g,'').length>=7;
+    var telOk=(tel==='')||(tel.replace(/[^0-9]/g,'').length>=7); // teléfono opcional
     if(!emailOk||!telOk||!ok){ err.style.display='block'; return; }
     err.style.display='none';
     btn.disabled=true; btn.textContent='Desbloqueando…';
