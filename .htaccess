@@ -1,4 +1,4 @@
-# Proteger los leads: nadie puede descargar el CSV desde la web
-<Files "leads.csv">
+# Proteger los CSV (leads y compras): nadie puede descargarlos desde la web
+<FilesMatch "\.csv$">
   Require all denied
-</Files>
+</FilesMatch>

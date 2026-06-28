@@ -12,41 +12,77 @@
   body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(1100px 600px at 70% -10%,#20121f 0%,var(--bg) 55%),var(--bg);color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:30px;line-height:1.5}
   .wrap{max-width:600px;width:100%;text-align:center}
   .grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:13px;margin-bottom:26px}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:13px;margin-bottom:24px}
   .brand .dot{width:11px;height:11px;border-radius:50%;background:linear-gradient(90deg,var(--a1),var(--a2))}
-  .check{width:74px;height:74px;border-radius:50%;background:rgba(57,217,138,.14);color:var(--good);display:grid;place-items:center;font-size:38px;margin:0 auto 22px}
-  h1{font-size:clamp(28px,5.5vw,46px);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
-  p{color:var(--muted);font-size:clamp(15px,2vw,18px);max-width:46ch;margin:0 auto 12px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 26px;margin:28px 0 16px}
-  .cta{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:800;font-size:clamp(18px,2.4vw,22px);padding:18px 38px;border-radius:999px;text-decoration:none}
-  .cta:hover{filter:brightness(1.08)}
-  .save{color:var(--muted2);font-size:13px;margin-top:16px}
-  .steps{text-align:left;display:inline-block;margin:6px auto 0;color:#e7e9f2;font-size:15px}
-  .steps div{padding:5px 0}
-  .help{color:var(--muted2);font-size:13px;margin-top:24px}
+  .check{width:70px;height:70px;border-radius:50%;background:rgba(57,217,138,.14);color:var(--good);display:grid;place-items:center;font-size:36px;margin:0 auto 20px}
+  h1{font-size:clamp(26px,5vw,42px);font-weight:800;letter-spacing:-.02em;line-height:1.12;margin-bottom:12px}
+  p{color:var(--muted);font-size:clamp(15px,2vw,17px);max-width:48ch;margin:0 auto 12px}
+  p b{color:#fff}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px;margin:26px 0 14px;text-align:left}
+  .card h2{font-size:18px;font-weight:800;margin-bottom:6px;text-align:center}
+  .card .sub{color:var(--muted);font-size:14px;text-align:center;margin-bottom:18px}
+  .field label{display:block;font-size:13px;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .field input{width:100%;padding:14px;border:1px solid var(--line);border-radius:10px;background:#0d0d14;color:#fff;font-size:16px}
+  .field input:focus{outline:none;border-color:var(--a2)}
+  .btn{width:100%;background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:800;font-size:18px;border:none;border-radius:999px;padding:16px;cursor:pointer;margin-top:14px}
+  .btn:hover{filter:brightness(1.08)}.btn:disabled{opacity:.6}
+  .err{color:#ff6a6a;font-size:13px;margin-top:10px;display:none;text-align:center}
+  .note{color:var(--muted2);font-size:13px;margin-top:14px;text-align:center}
+  .note a{color:var(--a2);text-decoration:none}
+  .ok{display:none}
+  .ok .check{background:rgba(57,217,138,.18)}
+  .help{color:var(--muted2);font-size:13px;margin-top:22px}
   .help a{color:var(--a2);text-decoration:none}
 </style>
 </head>
 <body>
   <div class="wrap">
     <div class="brand"><span class="dot"></span> AI Shorts Mastery</div>
-    <div class="check">✓</div>
-    <h1>¡Compra confirmada! <span class="grad">Bienvenido</span> 🎉</h1>
-    <p>Ya tienes acceso de por vida a <b style="color:#fff">AI Shorts Mastery</b>: el curso completo, los 30 nichos, la biblioteca de prompts y las plantillas.</p>
 
-    <div class="card">
-      <p style="margin-bottom:18px;color:#fff;font-weight:600">Tu acceso al curso:</p>
-      <a class="cta" href="[PEGA-AQUÍ-EL-ENLACE-DE-TU-NOTION]" target="_blank" rel="noopener">Acceder al curso →</a>
-      <div class="save">📌 Guarda esta página en favoritos. También te llega el acceso por email.</div>
+    <!-- Estado inicial: pedir email de Notion -->
+    <div id="step1">
+      <div class="check">✓</div>
+      <h1>¡Compra confirmada! <span class="grad">Bienvenido</span> 🎉</h1>
+      <p>Ya eres parte de <b>AI Shorts Mastery</b>. El curso es de acceso <b>personal</b>: te invitamos a tu email para que nadie más pueda entrar con tu enlace.</p>
+
+      <form class="card" id="form" novalidate>
+        <h2>Pide tu acceso</h2>
+        <div class="sub">Dinos el email de tu cuenta de <b style="color:#fff">Notion</b> y te invitamos al curso.</div>
+        <div class="field">
+          <label for="email">Email de tu cuenta de Notion</label>
+          <input type="email" id="email" name="email" placeholder="tucorreo@email.com" autocomplete="email" required>
+        </div>
+        <button class="btn" type="submit" id="btn">Solicitar mi acceso →</button>
+        <div class="err" id="err">Escribe un email válido.</div>
+        <div class="note">¿No tienes cuenta de Notion? Es gratis: créala en <a href="https://www.notion.so/signup" target="_blank" rel="noopener">notion.so</a> con ese mismo email.</div>
+      </form>
     </div>
 
-    <div class="steps">
-      <div>1️⃣ Entra al curso con el botón de arriba.</div>
-      <div>2️⃣ Empieza por el Módulo 1 y ve en orden.</div>
-      <div>3️⃣ Descarga los recursos (nichos, prompts, plantillas).</div>
+    <!-- Estado tras enviar -->
+    <div id="step2" class="ok">
+      <div class="check">✓</div>
+      <h1>¡Recibido! <span class="grad">Te invitamos enseguida</span></h1>
+      <p>En breve recibirás en tu email la <b>invitación de Notion</b> para entrar al curso (normalmente en menos de 24 h).</p>
+      <p>Acéptala e inicia sesión en Notion con ese mismo email. ¡Nos vemos dentro! 🎬</p>
     </div>
 
-    <div class="help">¿Algún problema con el acceso? Escríbenos a <a href="mailto:hola@aishortsmastery.com">hola@aishortsmastery.com</a></div>
+    <div class="help">¿Dudas o no te llega el acceso? Escríbenos a <a href="mailto:hola@aishortsmastery.com">hola@aishortsmastery.com</a></div>
   </div>
+
+<script>
+  var form=document.getElementById('form'), btn=document.getElementById('btn'), err=document.getElementById('err');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email=document.getElementById('email').value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ err.style.display='block'; return; }
+    err.style.display='none'; btn.disabled=true; btn.textContent='Enviando…';
+    fetch('guardar-acceso.php',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({email:email})})
+      .catch(function(){})
+      .finally(function(){
+        document.getElementById('step1').style.display='none';
+        document.getElementById('step2').style.display='block';
+      });
+  });
+</script>
 </body>
 </html>
