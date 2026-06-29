@@ -68,7 +68,7 @@
   .tier{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 24px;display:flex;flex-direction:column;position:relative}
   .tier.feat{border-color:transparent;box-shadow:0 26px 70px rgba(255,80,40,.18);transform:translateY(-6px)}
   @media(max-width:880px){.tier.feat{transform:none;order:-1}}
-  .tier.feat::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1.5px;background:linear-gradient(120deg,var(--a1),var(--a2));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+  .tier.feat::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1.5px;background:linear-gradient(120deg,var(--a1),var(--a2));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
   .ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:900;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:999px;white-space:nowrap}
   .ribbon.green{background:linear-gradient(90deg,#2bbf74,#39d98a);color:#06210f}
   .tier .tname{font-weight:800;font-size:18px;margin-bottom:2px}
