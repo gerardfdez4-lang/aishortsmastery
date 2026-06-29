@@ -99,6 +99,17 @@ $max = max(1, $landing);
 </div>
 <?php endforeach; ?>
 
+<h2 style="font-size:18px;margin:28px 0 12px">📺 Retención del vídeo</h2>
+<?php
+$vplay=c($counts,'video_play'); $v25=c($counts,'video_25'); $v50=c($counts,'video_50'); $v75=c($counts,'video_75');
+$ret=[['▶️ Le dan al play',$vplay],['25%',$v25],['50%',$v50],['75%',$v75],['🏁 Terminan (100%)',$vfin]];
+$maxr=max(1,$lead,$vplay);
+foreach($ret as $rr){ list($rl,$rn)=$rr; $rw=round($rn/$maxr*100); ?>
+<div class="row"><div class="lab"><b><?= $rl ?></b><span><?= $rn ?> <span class="cv"><?= $vplay>0 ? '· '.pct($rn,$vplay).'% de los que reproducen' : '' ?></span></span></div>
+<div class="track"><div class="fill" style="width:<?= max($rw,6) ?>%"><?= $rn ?></div></div></div>
+<?php } ?>
+<p style="color:#6b7185;font-size:12px;margin:8px 0 0">Si caen entre el play y el 50% → el vídeo es muy largo o el arranque no engancha. La oferta ya está visible bajo el vídeo, así que no dependes de que terminen.</p>
+
 <div class="cards">
   <div class="card"><div class="n"><?= $compraH ?></div><div class="l">Compras Toolkit (29€)</div></div>
   <div class="card"><div class="n"><?= $compraC ?></div><div class="l">Compras Curso (147€)</div></div>

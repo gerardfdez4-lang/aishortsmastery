@@ -56,6 +56,14 @@
   .endscreen .es-replay{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.12);color:#fff;border:none;border-radius:999px;
     padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px}
   .endscreen .es-replay:hover{background:rgba(255,255,255,.2)}
+  /* CTA siempre visible bajo el vídeo */
+  .vcta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .vcta span{font-weight:700;font-size:15px;margin-right:2px}
+  .vcta a{text-decoration:none;font-weight:800;font-size:14px;padding:11px 18px;border-radius:999px;white-space:nowrap}
+  .vcta .vb1{background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f}
+  .vcta .vb1:hover{filter:brightness(1.08)}
+  .vcta .vb2{background:transparent;color:#fff;border:1px solid var(--line)}
+  .vcta .vb2:hover{border-color:var(--a2)}
 
   .below{margin:34px 0 10px}
   .below h2{font-size:clamp(20px,3vw,28px);font-weight:800;margin-bottom:18px}
@@ -109,6 +117,11 @@
         <a class="es-2" href="ai-shorts-mastery-ventas.html#precios" onclick="asmTrack('cta_ventas','endscreen')">o ver el curso completo</a>
       </div>
     </div>
+    <div class="vcta">
+      <span>👉 ¿Lo quieres montar tú?</span>
+      <a class="vb1" href="https://buy.stripe.com/bJeeVf8QFgBjaLOeCpgfu02" target="_blank" rel="noopener" onclick="asmTrack&&asmTrack('checkout_herramientas','bajo_video')">Empezar hoy · Herramientas 29 €</a>
+      <a class="vb2" href="ai-shorts-mastery-ventas.html#precios" onclick="asmTrack&&asmTrack('cta_ventas','bajo_video')">Ver todas las opciones</a>
+    </div>
   </div>
 
   <div class="below">
@@ -148,8 +161,17 @@
     var es=document.getElementById('endscreen');
     var rp=document.getElementById('esReplay');
     if(!v||!es) return;
-    v.addEventListener('ended', function(){ es.classList.add('show'); asmTrack('video_fin'); });
-    v.addEventListener('play', function(){ es.classList.remove('show'); });
+    var fired={};
+    function fire(ev){ if(!fired[ev]){ fired[ev]=1; asmTrack(ev); } }
+    v.addEventListener('play', function(){ es.classList.remove('show'); fire('video_play'); });
+    v.addEventListener('timeupdate', function(){
+      if(!v.duration) return;
+      var p=v.currentTime/v.duration;
+      if(p>=0.25) fire('video_25');
+      if(p>=0.50) fire('video_50');
+      if(p>=0.75) fire('video_75');
+    });
+    v.addEventListener('ended', function(){ es.classList.add('show'); fire('video_fin'); });
     rp.addEventListener('click', function(){ es.classList.remove('show'); try{v.currentTime=0; v.play();}catch(e){} });
   })();
 
