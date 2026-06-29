@@ -32,6 +32,11 @@
   .steps li{position:relative;padding:9px 0 9px 40px;color:#e7e9f2;font-size:15px;font-weight:500}
   .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:8px;width:26px;height:26px;border-radius:50%;
     background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:900;font-size:13px;display:grid;place-items:center}
+  .bigbtn{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;text-decoration:none;font-weight:800;font-size:16px;padding:14px 24px;border-radius:12px;background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f}
+  .bigbtn:hover{filter:brightness(1.08)}
+  .bigbtn.green{background:linear-gradient(90deg,#2bbf74,#39d98a);color:#06210f}
+  .mini{color:var(--muted2);font-size:12.5px;margin-top:10px}
+  .card.upsell{background:linear-gradient(120deg,rgba(57,217,138,.10),rgba(255,138,0,.05));border-color:rgba(57,217,138,.28)}
   .support{color:var(--muted);font-size:15px;margin-top:6px}
   .support a{color:var(--a2);font-weight:700;text-decoration:none}
   .foot{color:var(--muted2);font-size:12px;margin-top:30px}
@@ -45,17 +50,14 @@
   <div class="lead">Gracias por hacerte con el <b style="color:#fff">Toolkit de AI Shorts Mastery</b>. Tu pago se ha procesado correctamente.</div>
 
   <div class="card">
-    <div class="h"><span class="ic">📩</span> Tu acceso está en camino</div>
-    <p>Recibirás acceso en <b>Notion a todas las herramientas muy pronto</b>, en el mismo correo con el que has pagado. Lo activamos de forma personal para ti, así que dale unas horas.</p>
-    <ul class="steps">
-      <li>Revisa tu correo (y la carpeta de spam por si acaso).</li>
-      <li>Recibirás una invitación a tu espacio de Notion con las herramientas.</li>
-      <li>Ábrela, guárdala en favoritos y… ¡a producir!</li>
-    </ul>
+    <div class="h"><span class="ic">⚡</span> Acceso inmediato</div>
+    <p>Tus herramientas están <b>desbloqueadas ya mismo</b>. Entra, guarda la página en favoritos y empieza por el <b>Buscador de canales</b> para encontrar tu primera idea ganadora.</p>
+    <a class="bigbtn" href="herramientas/acceso.html">⚡ Acceder a mis herramientas →</a>
+    <p class="mini">Guarda este enlace. Si lo pierdes, escríbenos y te lo reenviamos al instante.</p>
   </div>
 
   <div class="card">
-    <div class="h"><span class="ic">🛠️</span> Lo que vas a tener</div>
+    <div class="h"><span class="ic">🛠️</span> Lo que ya tienes dentro</div>
     <ul class="tools">
       <li><i>✓</i> 🔎 Buscador de canales</li>
       <li><i>✓</i> ✨ Generador de prompts</li>
@@ -66,7 +68,13 @@
     </ul>
   </div>
 
-  <div class="support">¿Algún problema o no te llega el acceso? Escríbenos a <a href="mailto:shortsmasteryai@gmail.com">shortsmasteryai@gmail.com</a> y lo resolvemos.</div>
+  <div class="card upsell">
+    <div class="h"><span class="ic">🚀</span> Da el siguiente paso</div>
+    <p>Ya tienes las herramientas. Si quieres el <b>método completo paso a paso</b> —el sistema entero, los 30 nichos, la monetización y el soporte para no atascarte— súbete al <b>Curso Completo</b>.</p>
+    <a class="bigbtn green" href="ai-shorts-mastery-ventas.html#precios">Ver el Curso Completo →</a>
+  </div>
+
+  <div class="support">¿Alguna duda? Escríbenos a <a href="mailto:shortsmasteryai@gmail.com">shortsmasteryai@gmail.com</a> y lo resolvemos.</div>
 
   <div class="foot">AI Shorts Mastery · © Todos los derechos reservados</div>
 </div>
