@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
-<title>AI Shorts Mastery — El sistema completo (147 €)</title>
+<title>AI Shorts Mastery — Empieza hoy tu canal con IA</title>
 <style>
   :root{
     --bg:#0a0a0f; --ink:#fff; --muted:#9aa0b4; --muted2:#6b7185;
@@ -15,28 +15,28 @@
   body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     background:radial-gradient(1200px 700px at 75% -8%, #20121f 0%, var(--bg) 50%), var(--bg);
     color:var(--ink);line-height:1.55}
-  .wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
   .grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
   a.cta{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(90deg,var(--a1),var(--a2));
     color:#0a0a0f;font-weight:800;font-size:clamp(17px,2.2vw,22px);padding:16px 32px;border-radius:999px;text-decoration:none}
   a.cta:hover{filter:brightness(1.08)}
+  a.ghost{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-weight:700;text-decoration:none;font-size:15px}
+  a.ghost:hover{color:#fff}
   .kicker{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--a2);margin-bottom:14px}
   .kicker::before{content:"";width:28px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--a1),var(--a2))}
   header{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
   .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:14px}
   .brand .dot{width:11px;height:11px;border-radius:50%;background:linear-gradient(90deg,var(--a1),var(--a2))}
-  .brand .price-tag{margin-left:0;color:var(--muted)}
   .nav-cta{background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:800;padding:10px 18px;border-radius:999px;text-decoration:none;font-size:14px}
   section{padding:46px 0}
-  h1{font-size:clamp(32px,6vw,62px);line-height:1.04;font-weight:800;letter-spacing:-.02em;margin-bottom:18px}
+  h1{font-size:clamp(32px,6vw,60px);line-height:1.05;font-weight:800;letter-spacing:-.02em;margin-bottom:18px}
   h2{font-size:clamp(24px,3.6vw,40px);font-weight:800;letter-spacing:-.01em;margin-bottom:10px;line-height:1.1}
-  .lead{font-size:clamp(17px,2.2vw,23px);color:var(--muted);max-width:40ch;font-weight:500}
-  .sec-sub{color:var(--muted);font-size:clamp(15px,1.8vw,19px);margin-bottom:26px;max-width:52ch}
+  .lead{font-size:clamp(17px,2.2vw,23px);color:var(--muted);max-width:46ch;font-weight:500}
+  .sec-sub{color:var(--muted);font-size:clamp(15px,1.8vw,19px);margin-bottom:26px;max-width:54ch}
   .hero-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:28px}
   .hero-cta .micro{color:var(--muted2);font-size:14px;font-weight:600}
-  .strike{color:var(--muted2);text-decoration:line-through;margin-right:8px}
 
-  /* proof — canales reales (vídeos públicos) */
+  /* proof */
   .chans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:6px}
   @media(max-width:680px){.chans{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}}
   .ch{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 18px 50px rgba(0,0,0,.4)}
@@ -59,42 +59,40 @@
   .step .emo{font-size:34px;margin-bottom:10px}
   .step .t{font-weight:700;font-size:clamp(16px,1.8vw,20px)}
   .step .d{color:var(--muted);font-size:14px;margin-top:6px;font-weight:500}
+  .step .tool{color:var(--a2);font-size:12.5px;margin-top:9px;font-weight:700}
   .simple-line{margin-top:18px;font-weight:700;font-size:clamp(16px,1.9vw,21px)}
 
-  /* includes */
-  .inc{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
-  @media(max-width:680px){.inc{grid-template-columns:1fr}}
-  .inc .it{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
-  .inc .it i{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:rgba(255,138,0,.14);color:var(--a2);font-style:normal;font-size:18px;font-weight:800}
-  .inc .it .h{font-weight:700;font-size:clamp(15px,1.7vw,18px)}
-  .inc .it .p{color:var(--muted);font-size:14px;margin-top:3px;font-weight:500}
-  .inc .it .val{color:var(--a2);font-size:13px;margin-top:7px;font-weight:800;letter-spacing:.02em}
+  /* TIERS */
+  .tiers{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;margin:8px auto 0;max-width:760px}
+  @media(max-width:760px){.tiers{grid-template-columns:1fr;max-width:440px}}
+  .tier{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 24px;display:flex;flex-direction:column;position:relative}
+  .tier.feat{border-color:transparent;box-shadow:0 26px 70px rgba(255,80,40,.18);transform:translateY(-6px)}
+  @media(max-width:880px){.tier.feat{transform:none;order:-1}}
+  .tier.feat::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1.5px;background:linear-gradient(120deg,var(--a1),var(--a2));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+  .ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:900;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:999px;white-space:nowrap}
+  .save{position:absolute;top:-11px;right:18px;background:rgba(57,217,138,.16);color:var(--good);border:1px solid rgba(57,217,138,.4);font-weight:800;font-size:11.5px;padding:4px 10px;border-radius:999px}
+  .tier .tname{font-weight:800;font-size:18px;margin-bottom:2px}
+  .tier .tsub{color:var(--muted);font-size:13.5px;font-weight:500;min-height:36px}
+  .tier .tprice{font-size:clamp(40px,7vw,54px);font-weight:900;letter-spacing:-.02em;line-height:1;margin:10px 0 2px}
+  .tier.feat .tprice{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tier .tonce{color:var(--muted2);font-size:13px;font-weight:600;margin-bottom:6px}
+  .tier .tstrike{color:var(--muted2);text-decoration:line-through;font-weight:700;font-size:18px;margin-left:8px}
+  .tier ul{list-style:none;margin:16px 0 22px;display:flex;flex-direction:column;gap:10px}
+  .tier ul li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#e7e9f2;font-weight:500}
+  .tier ul li i{flex:none;color:var(--good);font-style:normal;font-weight:900;font-size:13px;margin-top:2px}
+  .tier ul li.mutold{color:var(--muted2)}
+  .tier .tbtn{margin-top:auto;display:block;text-align:center;text-decoration:none;font-weight:800;font-size:16px;padding:14px;border-radius:12px}
+  .tier .tbtn.solid{background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f}
+  .tier .tbtn.outline{background:transparent;color:#fff;border:1px solid var(--line)}
+  .tier .tbtn.outline:hover{border-color:var(--a2)}
+  .helper{text-align:center;color:var(--muted);font-size:15px;margin-top:24px;font-weight:500}
+  .helper b{color:#fff}
 
   /* who */
   ul.checks{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
   @media(max-width:640px){ul.checks{grid-template-columns:1fr}}
   ul.checks li{display:flex;gap:12px;align-items:flex-start;font-size:clamp(15px,1.8vw,18px);color:#e7e9f2;font-weight:500}
   ul.checks li i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(57,217,138,.14);color:var(--good);font-style:normal;font-weight:800;font-size:14px}
-
-  /* price box */
-  .pricebox{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:38px 30px;text-align:center;max-width:560px;margin:0 auto;position:relative;overflow:hidden}
-  .pricebox::before{content:"";position:absolute;inset:0;border-radius:22px;padding:1px;background:linear-gradient(120deg,var(--a1),var(--a2));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.5}
-  .pricebox .price{font-size:clamp(60px,13vw,120px);font-weight:900;letter-spacing:-.03em;line-height:.9;
-    background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .pricebox .once{color:var(--muted);font-size:16px;font-weight:600;margin-top:6px}
-  .pricebox .recap{text-align:left;display:inline-block;margin:22px auto;color:#e7e9f2}
-  .pricebox .recap div{padding:5px 0;font-size:15px;font-weight:500}
-  .pricebox .recap b{color:#fff}
-  .stacklist{text-align:left;margin:0 auto 18px;max-width:440px}
-  .stacklist .sl{display:flex;justify-content:space-between;align-items:center;gap:12px;
-    padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;color:#e7e9f2;font-weight:500}
-  .stacklist .sl:last-child{border-bottom:none}
-  .stacklist .sl b{color:#fff;font-weight:700;white-space:nowrap}
-  .total{font-size:17px;color:var(--muted);font-weight:600;margin-top:6px}
-  .total .strike{color:var(--muted2);text-decoration:line-through;font-weight:700}
-  .today{margin-top:16px;color:var(--a2);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:14px}
-  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(57,217,138,.12);color:var(--good);border:1px solid rgba(57,217,138,.3);
-    padding:8px 14px;border-radius:999px;font-size:13px;font-weight:700;margin-top:14px}
 
   /* faq */
   .faq{max-width:760px;margin:0 auto}
@@ -107,7 +105,6 @@
   .center{text-align:center}
   footer{color:var(--muted2);font-size:12px;text-align:center;padding:46px 0 40px;border-top:1px solid var(--line);margin-top:30px;line-height:1.7}
 
-  /* sticky bar */
   .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(10,10,15,.92);border-top:1px solid var(--line);
     backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;gap:16px;padding:12px 18px;flex-wrap:wrap}
   .sticky .txt{font-weight:700}
@@ -120,21 +117,21 @@
 
   <header>
     <div class="brand"><span class="dot"></span> AI Shorts Mastery</div>
-    <a class="nav-cta" href="https://buy.stripe.com/cNifZjgj73Ox8DGgKxgfu01" target="_blank" rel="noopener">Conseguirlo · 147 €</a>
+    <a class="nav-cta" href="#precios">Ver precios</a>
   </header>
 
   <!-- HERO -->
   <section style="padding-top:20px">
-    <div class="kicker">El sistema completo</div>
-    <h1>Monta tu canal de YouTube con IA y <span class="grad">cóbralo cada mes</span> — sin dar la cara</h1>
-    <div class="lead">El método exacto, paso a paso, con los 30 nichos, los prompts y las herramientas. Lo tienes funcionando en días, no en meses.</div>
+    <div class="kicker">Empieza hoy</div>
+    <h1>Todo lo que necesitas para lanzar tu canal de YouTube con IA — y <span class="grad">empezar hoy mismo</span></h1>
+    <div class="lead">Las herramientas que hacen el trabajo por ti, desde 29 €. Y si quieres el método completo paso a paso, el curso. Tú eliges por dónde empezar — sin dar la cara.</div>
     <div class="hero-cta">
-      <a class="cta" href="https://buy.stripe.com/cNifZjgj73Ox8DGgKxgfu01" target="_blank" rel="noopener">Empezar ahora · 147 € →</a>
-      <span class="micro">Pago único · acceso de por vida · soporte incluido</span>
+      <a class="cta" href="#precios">Ver las opciones →</a>
+      <span class="micro">Pago único · acceso de por vida</span>
     </div>
   </section>
 
-  <!-- PROOF · canales reales (públicos) -->
+  <!-- PROOF -->
   <section>
     <div class="kicker">Esto ya está pasando</div>
     <h2>Canales reales. <span class="grad">Visitas reales.</span></h2>
@@ -153,36 +150,67 @@
         <div class="meta"><div><div class="name">CocoBunny</div><span class="tag">infantil</span></div><div class="num">1,75 M<small>suscriptores</small></div></div>
       </div>
     </div>
-    <div class="sec-sub" style="margin-top:22px;margin-bottom:0">Tres nichos distintos, el mismo sistema detrás. No es suerte: es un patrón <b style="color:#fff">que se puede copiar</b>.</div>
   </section>
 
-  <!-- WHAT -->
+  <!-- METHOD -->
   <section>
     <div class="kicker">Lo difícil ya está resuelto</div>
     <h2>Tan simple como <span class="grad">3 pasos</span></h2>
-    <div class="sec-sub">Sin automatizaciones raras, sin programar. El curso te da el QUÉ vídeo, el PROMPT exacto y el nicho que paga.</div>
+    <div class="sec-sub">Sin automatizaciones raras, sin programar. Y tienes una herramienta para cada paso.</div>
     <div class="steps">
-      <div class="step"><div class="n">1</div><div class="emo">🎬</div><div class="t">Vídeo de referencia</div><div class="d">Coges un Short que ya funciona como modelo.</div></div>
-      <div class="step"><div class="n">2</div><div class="emo">🤖</div><div class="t">Pides el prompt a la IA</div><div class="d">Claude o ChatGPT te dan el prompt del vídeo.</div></div>
-      <div class="step"><div class="n">3</div><div class="emo">✨</div><div class="t">Higgsfield lo genera</div><div class="d">Pegas el prompt y sale tu vídeo listo para subir.</div></div>
+      <div class="step"><div class="n">1</div><div class="emo">🎬</div><div class="t">Vídeo de referencia</div><div class="d">Coges un Short que ya funciona como modelo.</div><div class="tool">↳ Buscador de canales</div></div>
+      <div class="step"><div class="n">2</div><div class="emo">🤖</div><div class="t">Pides el prompt a la IA</div><div class="d">Claude o ChatGPT te dan el prompt del vídeo.</div><div class="tool">↳ Generador de prompts</div></div>
+      <div class="step"><div class="n">3</div><div class="emo">✨</div><div class="t">Higgsfield lo genera</div><div class="d">Pegas el prompt y sale tu vídeo listo para subir.</div><div class="tool">↳ Generador de títulos + Planificador</div></div>
     </div>
     <div class="simple-line">3 pasos. <span class="grad">Eso es todo.</span></div>
   </section>
 
-  <!-- INCLUDES -->
-  <section>
-    <div class="kicker">Qué incluye</div>
-    <h2>Todo lo que necesitas, <span class="grad">nada de relleno</span></h2>
-    <div class="inc">
-      <div class="it"><i>🎓</i><div><div class="h">Curso completo en vídeo (2 h)</div><div class="p">Paso a paso, de cero a tu canal publicando.</div><div class="val">Valor 197 €</div></div></div>
-      <div class="it"><i>🎯</i><div><div class="h">30 nichos de alto potencial</div><div class="p">Ya investigados y listos para elegir el tuyo.</div><div class="val">Valor 147 €</div></div></div>
-      <div class="it"><i>📋</i><div><div class="h">Biblioteca de prompts</div><div class="p">Copiar, pegar y generar vídeos que enganchan.</div><div class="val">Valor 127 €</div></div></div>
-      <div class="it"><i>🛠️</i><div><div class="h">Las herramientas exactas</div><div class="p">Claude → Higgsfield y cómo usarlas bien.</div><div class="val">Valor 97 €</div></div></div>
-      <div class="it"><i>📺</i><div><div class="h">Plantillas y setup del canal</div><div class="p">Configura el canal desde cero sin perderte.</div><div class="val">Valor 67 €</div></div></div>
-      <div class="it"><i>💶</i><div><div class="h">Guía de monetización</div><div class="p">Actívala bien y evita que te tumben el canal.</div><div class="val">Valor 97 €</div></div></div>
-      <div class="it"><i>♾️</i><div><div class="h">Acceso de por vida + actualizaciones</div><div class="p">La IA cambia rápido; tú siempre al día.</div><div class="val">Valor 47 €</div></div></div>
-      <div class="it"><i>🛟</i><div><div class="h">Soporte y comunidad</div><div class="p">Resuelve dudas y comparte avances.</div><div class="val">Valor 47 €</div></div></div>
+  <!-- PRICING -->
+  <section id="precios">
+    <div class="center"><div class="kicker" style="justify-content:center">Elige cómo empezar</div>
+    <h2>Tres formas de <span class="grad">arrancar hoy</span></h2>
+    <div class="sec-sub" style="margin:0 auto 30px">Pago único, acceso de por vida. Sin suscripciones.</div></div>
+
+    <div class="tiers">
+
+      <!-- HERRAMIENTAS (destacada) -->
+      <div class="tier feat">
+        <div class="ribbon">⭐ Empieza hoy</div>
+        <div class="tname">Las Herramientas</div>
+        <div class="tsub">Todo lo que necesitas para empezar hoy mismo.</div>
+        <div class="tprice">29 €</div>
+        <div class="tonce">pago único · acceso de por vida</div>
+        <ul>
+          <li><i>✓</i> 🔎 Buscador de canales (estudio de mercado en vivo)</li>
+          <li><i>✓</i> ✨ Generador de prompts</li>
+          <li><i>✓</i> 🧭 Explorador de 30 nichos</li>
+          <li><i>✓</i> 🏷️ Generador de títulos y hooks</li>
+          <li><i>✓</i> 💸 Calculadora de ingresos</li>
+          <li><i>✓</i> 📅 Planificador + checklist</li>
+        </ul>
+        <a class="tbtn solid" href="https://buy.stripe.com/bJeeVf8QFgBjaLOeCpgfu02" target="_blank" rel="noopener">Empezar hoy · 29 €</a>
+      </div>
+
+      <!-- CURSO COMPLETO (incluye las herramientas) -->
+      <div class="tier">
+        <div class="save">Todo incluido</div>
+        <div class="tname">El Curso Completo</div>
+        <div class="tsub">El método completo + todas las herramientas.</div>
+        <div class="tprice">147 €</div>
+        <div class="tonce">pago único · acceso de por vida</div>
+        <ul>
+          <li><i>✓</i> Curso en vídeo (2 h · 10 módulos)</li>
+          <li><i>✓</i> <b>Las 6 herramientas incluidas</b></li>
+          <li><i>✓</i> 30 nichos investigados</li>
+          <li><i>✓</i> Biblioteca de prompts</li>
+          <li><i>✓</i> Plantillas y guía de monetización</li>
+          <li><i>✓</i> Soporte y actualizaciones de por vida</li>
+        </ul>
+        <a class="tbtn outline" href="https://buy.stripe.com/cNifZjgj73Ox8DGgKxgfu01" target="_blank" rel="noopener">Conseguir el curso · 147 €</a>
+      </div>
+
     </div>
+    <div class="helper">¿No sabes por dónde empezar? <b>Coge las Herramientas hoy por 29 €</b> — y cuando quieras el método completo, el curso ya las incluye.</div>
   </section>
 
   <!-- WHO -->
@@ -193,33 +221,8 @@
       <li><i>✓</i> No quieres dar la cara ni grabarte.</li>
       <li><i>✓</i> No eres técnico (si copias y pegas, vale).</li>
       <li><i>✓</i> Quieres un ingreso extra con YouTube + IA.</li>
-      <li><i>✓</i> Buscas un método claro, no teoría suelta.</li>
+      <li><i>✓</i> Buscas algo accionable hoy, no teoría suelta.</li>
     </ul>
-  </section>
-
-  <!-- PRICE -->
-  <section>
-    <div class="center"><div class="kicker" style="justify-content:center">Empieza hoy</div></div>
-    <div class="pricebox">
-      <div style="color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:13px;margin-bottom:18px">AI Shorts Mastery incluye</div>
-      <div class="stacklist">
-        <div class="sl"><span>🎓 Curso completo en vídeo (2 h)</span><b>197 €</b></div>
-        <div class="sl"><span>🎯 30 nichos de alto potencial</span><b>147 €</b></div>
-        <div class="sl"><span>📋 Biblioteca de prompts</span><b>127 €</b></div>
-        <div class="sl"><span>🛠️ Herramientas exactas (Claude → Higgsfield)</span><b>97 €</b></div>
-        <div class="sl"><span>📺 Plantillas y setup del canal</span><b>67 €</b></div>
-        <div class="sl"><span>💶 Guía de monetización</span><b>97 €</b></div>
-        <div class="sl"><span>♾️ Acceso de por vida + actualizaciones</span><b>47 €</b></div>
-        <div class="sl"><span>🛟 Soporte y comunidad</span><b>47 €</b></div>
-      </div>
-      <div class="total">Valor total: <span class="strike">826 €</span></div>
-      <div class="today">Hoy</div>
-      <div class="price">147 €</div>
-      <div class="once">pago único · acceso de por vida</div>
-      <div style="margin-top:22px"><a class="cta" href="https://buy.stripe.com/cNifZjgj73Ox8DGgKxgfu01" target="_blank" rel="noopener">Conseguir AI Shorts Mastery →</a></div>
-      <div class="badge">🔒 Pago único y seguro · acceso de por vida + soporte</div>
-      <div style="color:var(--muted2);font-size:13px;margin-top:14px;font-weight:600">Pago seguro con tarjeta vía Stripe · España y México</div>
-    </div>
   </section>
 
   <!-- FAQ -->
@@ -227,20 +230,20 @@
     <div class="kicker">Dudas frecuentes</div>
     <h2 style="margin-bottom:24px">Antes de entrar</h2>
     <div class="faq">
+      <details><summary>¿Compro las herramientas o el curso?</summary><div class="ans">Si quieres <b>empezar hoy</b> sin gastar mucho, las <b>Herramientas (29 €)</b>. Si prefieres el <b>método completo</b> paso a paso, el <b>Curso (147 €)</b>, que <b>ya incluye las mismas herramientas</b> además de todo el sistema.</div></details>
+      <details><summary>¿Las herramientas funcionan sin el curso?</summary><div class="ans">Sí, son autónomas y fáciles de usar. El curso te enseña a exprimirlas al máximo y te da el método completo detrás (y ya las lleva incluidas).</div></details>
       <details><summary>¿Tengo que dar la cara o poner mi voz?</summary><div class="ans">No. Los vídeos los genera la IA de principio a fin. Nunca apareces.</div></details>
       <details><summary>¿Necesito saber de tecnología o edición?</summary><div class="ans">No. Son 3 pasos: vídeo de referencia → prompt con IA → Higgsfield. Si sabes copiar y pegar, puedes.</div></details>
-      <details><summary>¿Cuánto tardo en tener mi primer canal?</summary><div class="ans">El curso dura 2 horas y está pensado para que lo apliques a la vez. La mayoría tiene el canal montado en días.</div></details>
-      <details><summary>¿Esto está saturado?</summary><div class="ans">El contenido corto se consume y se olvida en horas: la demanda es enorme. Por eso te damos 30 nichos para elegir.</div></details>
-      <details><summary>¿Y si me atasco?</summary><div class="ans">Tienes <b>acceso de por vida</b> y <b>soporte</b>: si te atascas, escríbenos y te ayudamos. Por ser contenido digital de acceso inmediato, las compras son finales (ver <a href="reembolsos.html" style="color:var(--a2)">Política de reembolsos</a>).</div></details>
-      <details><summary>¿Cuánto cuesta montar todo esto aparte del curso?</summary><div class="ans">Muy poco: un par de herramientas de IA. Sin equipo, sin local, sin stock.</div></details>
+      <details><summary>¿Cómo accedo después de pagar?</summary><div class="ans">Tras el pago te llevamos a una página para indicarnos tu correo y te damos acceso personal (por Notion) a lo que hayas comprado.</div></details>
+      <details><summary>¿Puedo devolverlo?</summary><div class="ans">Por ser contenido digital de acceso inmediato, las compras son finales (ver <a href="reembolsos.html" style="color:var(--a2)">Política de reembolsos</a>). Si te atascas, tienes soporte.</div></details>
     </div>
   </section>
 
   <!-- FINAL CTA -->
   <section class="center">
     <h2>Tu primer canal, <span class="grad">esta semana</span></h2>
-    <div class="sec-sub" style="margin:0 auto 26px">Acceso de por vida y soporte incluido. El tiempo perdido no se recupera — empieza hoy.</div>
-    <a class="cta" href="https://buy.stripe.com/cNifZjgj73Ox8DGgKxgfu01" target="_blank" rel="noopener">Empezar ahora · 147 € →</a>
+    <div class="sec-sub" style="margin:0 auto 26px">El tiempo perdido no se recupera. Empieza hoy desde 29 €.</div>
+    <a class="cta" href="#precios">Elegir mi opción →</a>
   </section>
 
   <footer>
@@ -251,8 +254,8 @@
 </div>
 
 <div class="sticky">
-  <div class="txt">AI Shorts Mastery · 147 €<small>pago único · acceso de por vida</small></div>
-  <a class="nav-cta" href="https://buy.stripe.com/cNifZjgj73Ox8DGgKxgfu01" target="_blank" rel="noopener" style="font-size:15px;padding:12px 22px">Conseguirlo →</a>
+  <div class="txt">Empieza hoy · desde 29 €<small>pago único · acceso de por vida</small></div>
+  <a class="nav-cta" href="#precios" style="font-size:15px;padding:12px 22px">Ver opciones →</a>
 </div>
 
 </body>
