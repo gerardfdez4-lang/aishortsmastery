@@ -1,15 +1,25 @@
 <?php
 // Panel del embudo. Protegido con ?k=CLAVE (la clave está en asm-data/panel.key)
 $base = dirname($_SERVER['DOCUMENT_ROOT']) . '/asm-data';
-$keyfile = $base . '/panel.key';
-$key = is_file($keyfile) ? trim(file_get_contents($keyfile)) : '';
-$given = isset($_GET['k']) ? $_GET['k'] : '';
+$cands = ['/panel.key', '/panel.key.txt', '/panel.txt'];
+$keyfile = ''; $key = '';
+foreach ($cands as $c) { if (is_file($base . $c)) { $keyfile = $base . $c; break; } }
+if ($keyfile) {
+  $raw = file_get_contents($keyfile);
+  $raw = preg_replace('/^\xEF\xBB\xBF/', '', $raw);       // quita BOM
+  $key = trim($raw, " \t\n\r\0\x0B\"'");                  // quita espacios y comillas
+}
+$given = isset($_GET['k']) ? trim($_GET['k']) : '';
 if ($key === '' || $given !== $key) {
   http_response_code(403);
   header('Content-Type: text/html; charset=utf-8');
-  echo '<body style="font-family:sans-serif;background:#0a0a0f;color:#fff;padding:40px">';
+  echo '<body style="font-family:sans-serif;background:#0a0a0f;color:#fff;padding:40px;line-height:1.6">';
   echo '<h2>🔒 Panel restringido</h2><p>Accede con <code>?k=TU_CLAVE</code>.</p>';
-  if ($key === '') echo '<p style="color:#ff8a00">Falta crear el archivo <code>asm-data/panel.key</code> con tu clave dentro.</p>';
+  if (!$keyfile) {
+    echo '<p style="color:#ff8a00">No encuentro <code>asm-data/panel.key</code>. Créalo dentro de <code>asm-data</code> con tu clave. <b>Importante:</b> que se llame exactamente <code>panel.key</code> (no <code>panel.key.txt</code>).</p>';
+  } elseif ($given !== '') {
+    echo '<p style="color:#ff8a00">Clave incorrecta. Archivo detectado: <code>' . htmlspecialchars(basename($keyfile)) . '</code> (' . strlen($key) . ' caracteres). Revisa que escribes la misma clave que hay dentro, sin espacios.</p>';
+  }
   echo '</body>'; exit;
 }
 
