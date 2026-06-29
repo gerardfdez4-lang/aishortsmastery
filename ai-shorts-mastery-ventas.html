@@ -70,7 +70,7 @@
   @media(max-width:880px){.tier.feat{transform:none;order:-1}}
   .tier.feat::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1.5px;background:linear-gradient(120deg,var(--a1),var(--a2));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
   .ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:900;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:999px;white-space:nowrap}
-  .save{position:absolute;top:-11px;right:18px;background:rgba(57,217,138,.16);color:var(--good);border:1px solid rgba(57,217,138,.4);font-weight:800;font-size:11.5px;padding:4px 10px;border-radius:999px}
+  .ribbon.green{background:linear-gradient(90deg,#2bbf74,#39d98a);color:#06210f}
   .tier .tname{font-weight:800;font-size:18px;margin-bottom:2px}
   .tier .tsub{color:var(--muted);font-size:13.5px;font-weight:500;min-height:36px}
   .tier .tprice{font-size:clamp(40px,7vw,54px);font-weight:900;letter-spacing:-.02em;line-height:1;margin:10px 0 2px}
@@ -85,6 +85,8 @@
   .tier .tbtn.solid{background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f}
   .tier .tbtn.outline{background:transparent;color:#fff;border:1px solid var(--line)}
   .tier .tbtn.outline:hover{border-color:var(--a2)}
+  .tier .tbtn.green{background:linear-gradient(90deg,#2bbf74,#39d98a);color:#06210f}
+  .tier .tbtn.green:hover{filter:brightness(1.08)}
   .helper{text-align:center;color:var(--muted);font-size:15px;margin-top:24px;font-weight:500}
   .helper b{color:#fff}
 
@@ -193,7 +195,7 @@
 
       <!-- CURSO COMPLETO (incluye las herramientas) -->
       <div class="tier">
-        <div class="save">Todo incluido</div>
+        <div class="ribbon green">🔥 Mejor valor · todo incluido</div>
         <div class="tname">El Curso Completo</div>
         <div class="tsub">El método completo + todas las herramientas.</div>
         <div class="tprice">147 €</div>
@@ -206,7 +208,7 @@
           <li><i>✓</i> Plantillas y guía de monetización</li>
           <li><i>✓</i> Soporte y actualizaciones de por vida</li>
         </ul>
-        <a class="tbtn outline" href="https://buy.stripe.com/cNifZjgj73Ox8DGgKxgfu01" target="_blank" rel="noopener">Conseguir el curso · 147 €</a>
+        <a class="tbtn green" href="https://buy.stripe.com/cNifZjgj73Ox8DGgKxgfu01" target="_blank" rel="noopener">Conseguir el curso · 147 €</a>
       </div>
 
     </div>
