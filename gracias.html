@@ -84,5 +84,10 @@
       });
   });
 </script>
+<script>
+  (function(){var s;try{s=sessionStorage.getItem('asm_sid');if(!s){s=Date.now().toString(36)+Math.random().toString(36).slice(2,8);sessionStorage.setItem('asm_sid',s);}}catch(e){s='na';}
+  window.asmTrack=function(ev,meta){try{var d='e='+encodeURIComponent(ev)+'&p='+encodeURIComponent(location.pathname)+'&s='+encodeURIComponent(s)+'&m='+encodeURIComponent(meta||'')+'&r='+encodeURIComponent(document.referrer||'');var b=new Blob([d],{type:'application/x-www-form-urlencoded'});if(navigator.sendBeacon){navigator.sendBeacon('/track.php',b);}else{fetch('/track.php',{method:'POST',body:d,headers:{'Content-Type':'application/x-www-form-urlencoded'},keepalive:true});}}catch(e){}};})();
+  asmTrack('compra_curso');
+</script>
 </body>
 </html>
