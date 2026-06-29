@@ -40,6 +40,23 @@
   .video{position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
   .video video{position:absolute;inset:0;width:100%;height:100%;background:#000}
 
+  /* END-SCREEN (aparece al terminar el vídeo) */
+  .endscreen{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:20px;
+    background:radial-gradient(130% 130% at 50% 0%, rgba(32,18,31,.97) 0%, rgba(10,10,15,.98) 70%)}
+  .endscreen.show{display:flex}
+  .endscreen .es-kick{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--a2)}
+  .endscreen h3{font-size:clamp(18px,3.2vw,30px);font-weight:800;line-height:1.15;max-width:24ch;color:#fff}
+  .endscreen p{color:var(--muted);font-size:clamp(13px,2vw,17px);max-width:36ch;margin-top:-2px}
+  .endscreen p b{color:#fff}
+  .endscreen .es-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:800;
+    font-size:clamp(15px,2.2vw,19px);padding:13px 26px;border-radius:999px;text-decoration:none;margin-top:6px}
+  .endscreen .es-cta:hover{filter:brightness(1.08)}
+  .endscreen .es-2{color:var(--muted);font-size:13.5px;text-decoration:none;border-bottom:1px solid var(--muted2)}
+  .endscreen .es-2:hover{color:#fff}
+  .endscreen .es-replay{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.12);color:#fff;border:none;border-radius:999px;
+    padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px}
+  .endscreen .es-replay:hover{background:rgba(255,255,255,.2)}
+
   .below{margin:34px 0 10px}
   .below h2{font-size:clamp(20px,3vw,28px);font-weight:800;margin-bottom:18px}
   ul.checks{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -83,6 +100,14 @@
   <div class="videowrap" id="videowrap">
     <div class="video">
       <video id="clase" controls playsinline preload="metadata" src="clase.mp4"></video>
+      <div class="endscreen" id="endscreen">
+        <button class="es-replay" id="esReplay" type="button">↻ Volver a ver</button>
+        <div class="es-kick">Empieza hoy</div>
+        <h3>¿Aún no quieres el curso completo?</h3>
+        <p>Con el <b>pack de herramientas</b> puedes lanzar tu primer vídeo <b>hoy mismo</b> — por solo 29 €.</p>
+        <a class="es-cta" href="https://buy.stripe.com/bJeeVf8QFgBjaLOeCpgfu02" target="_blank" rel="noopener">Empezar hoy · Herramientas 29 € →</a>
+        <a class="es-2" href="ai-shorts-mastery-ventas.html#precios">o ver el curso completo</a>
+      </div>
     </div>
   </div>
 
@@ -111,6 +136,17 @@
   var err=document.getElementById('err');
 
   function unlock(){ gate.style.display='none'; vw.style.display='block'; var v=document.getElementById('clase'); try{v.play();}catch(e){} }
+
+  // End-screen: oferta del toolkit al terminar el vídeo
+  (function(){
+    var v=document.getElementById('clase');
+    var es=document.getElementById('endscreen');
+    var rp=document.getElementById('esReplay');
+    if(!v||!es) return;
+    v.addEventListener('ended', function(){ es.classList.add('show'); });
+    v.addEventListener('play', function(){ es.classList.remove('show'); });
+    rp.addEventListener('click', function(){ es.classList.remove('show'); try{v.currentTime=0; v.play();}catch(e){} });
+  })();
 
   // si ya desbloqueó antes, sáltate el muro
   try{ if(localStorage.getItem('asm_lead')==='1') unlock(); }catch(e){}
