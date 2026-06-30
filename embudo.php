@@ -112,7 +112,7 @@ foreach($ret as $rr){ list($rl,$rn)=$rr; $rw=round($rn/$maxr*100); ?>
 
 <div class="cards">
   <div class="card"><div class="n"><?= $compraH ?></div><div class="l">Compras Toolkit (29€)</div></div>
-  <div class="card"><div class="n"><?= $compraC ?></div><div class="l">Compras Curso (147€)</div></div>
+  <div class="card"><div class="n"><?= $compraC ?></div><div class="l">Compras Curso (197€)</div></div>
   <div class="card"><div class="n"><?= c($counts,'cta_toolkit') ?></div><div class="l">Clics CTA toolkit (fin de vídeo)</div></div>
   <div class="card"><div class="n"><?= pct($lead,$landing) ?>%</div><div class="l">Tasa de captación (landing→lead)</div></div>
 </div>
