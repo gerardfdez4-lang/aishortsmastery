@@ -37,4 +37,20 @@ fputcsv($fh, [
 ]);
 fclose($fh);
 
+// === Espejo en tiempo real a Google Sheets (si existe asm-data/sheet.url) ===
+$hook = @file_get_contents($dir . '/sheet.url');
+$hook = $hook ? trim($hook) : '';
+if ($hook !== '' && function_exists('curl_init')) {
+  $ch = curl_init($hook);
+  curl_setopt_array($ch, [
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => http_build_query(['fecha'=>date('Y-m-d H:i:s'), 'email'=>$email, 'telefono'=>$tel]),
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_TIMEOUT => 4,
+    CURLOPT_SSL_VERIFYPEER => true,
+  ]);
+  @curl_exec($ch); curl_close($ch);
+}
+
 echo json_encode(['ok' => true]);
