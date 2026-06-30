@@ -112,6 +112,19 @@
   .sticky .txt{font-weight:700}
   .sticky .txt small{display:block;color:var(--muted2);font-weight:500;font-size:12px}
   body{padding-bottom:84px}
+
+  /* offer bar + countdown */
+  .offerbar{display:flex;align-items:center;justify-content:center;gap:8px 22px;flex-wrap:wrap;text-align:center;
+    background:linear-gradient(90deg,rgba(255,61,61,.16),rgba(255,138,0,.16));border:1px solid rgba(255,138,0,.45);
+    border-radius:14px;padding:13px 18px;margin:4px 0 0;font-size:15px;font-weight:600}
+  .offerbar s{color:var(--muted2);font-weight:700}
+  .offerbar .cd{font-variant-numeric:tabular-nums;font-weight:900;color:#fff;background:#000;border-radius:8px;padding:5px 11px;letter-spacing:.05em}
+  .guarantee{display:flex;align-items:center;justify-content:center;gap:12px;max-width:640px;margin:26px auto 0;
+    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;text-align:left}
+  .guarantee .shield{font-size:32px;flex:none}
+  .guarantee b{color:var(--good)}
+  .guarantee .g-sub{color:var(--muted);font-size:13.5px;font-weight:500}
+  .tbtn-note{text-align:center;color:var(--good);font-size:12.5px;font-weight:700;margin-top:10px}
 </style>
 </head>
 <body>
@@ -122,14 +135,20 @@
     <a class="nav-cta" href="#precios">Ver precios</a>
   </header>
 
+  <!-- OFERTA / COUNTDOWN -->
+  <div class="offerbar">
+    <span>🔥 <b>Oferta de lanzamiento:</b> Curso Completo (valor <s>799 €</s>) → <b style="color:var(--a2)">hoy 197 €</b></span>
+    <span>Termina en <span class="cd" id="cd">--:--:--</span></span>
+  </div>
+
   <!-- HERO -->
   <section style="padding-top:20px">
     <div class="kicker">Empieza hoy</div>
-    <h1>Todo lo que necesitas para lanzar tu canal de YouTube con IA — y <span class="grad">empezar hoy mismo</span></h1>
-    <div class="lead">Las herramientas que hacen el trabajo por ti, desde 29 €. Y si quieres el método completo paso a paso, el curso. Tú eliges por dónde empezar — sin dar la cara.</div>
+    <h1>El método completo para lanzar tu canal de YouTube con IA — y <span class="grad">empezar hoy mismo</span></h1>
+    <div class="lead">El curso paso a paso <b>+ todas las herramientas incluidas</b>, sin dar la cara. Hoy a precio de lanzamiento: <b>197 €</b> en vez de 799 €.</div>
     <div class="hero-cta">
-      <a class="cta" href="#precios">Ver las opciones →</a>
-      <span class="micro">Pago único · acceso de por vida</span>
+      <a class="cta" href="#precios">Conseguir el curso →</a>
+      <span class="micro">Pago único · IVA incluido · garantía de 7 días</span>
     </div>
   </section>
 
@@ -175,44 +194,49 @@
 
     <div class="tiers">
 
-      <!-- HERRAMIENTAS (destacada) -->
+      <!-- CURSO COMPLETO (destacado) -->
       <div class="tier feat">
-        <div class="ribbon">⭐ Empieza hoy</div>
-        <div class="tname">Las Herramientas</div>
-        <div class="tsub">El arsenal que hace el trabajo difícil por ti. Acceso inmediato.</div>
-        <div class="tprice">29 €</div>
-        <div class="tonce">pago único · acceso al instante · de por vida</div>
+        <div class="ribbon">🔥 Oferta de lanzamiento</div>
+        <div class="tname">El Curso Completo</div>
+        <div class="tsub">El método completo paso a paso + las 6 herramientas. Todo incluido.</div>
+        <div class="tprice">197 €<span class="tstrike">799 €</span></div>
+        <div class="tonce">pago único · IVA incluido · acceso de por vida</div>
         <ul>
-          <li><i>✓</i> 🔎 <b>Buscador de canales:</b> mira qué vídeos petan hoy en tu nicho, con visitas reales</li>
-          <li><i>✓</i> ✨ <b>Generador de prompts:</b> tu idea → prompt pro en 10 s, sin saber inglés</li>
-          <li><i>✓</i> 🧭 <b>30 nichos rentables</b> ya investigados y filtrados</li>
-          <li><i>✓</i> 🏷️ <b>Títulos, hooks y hashtags</b> que enganchan en los 2 primeros segundos</li>
-          <li><i>✓</i> 💸 <b>Calculadora de ingresos</b> para fijar tu meta</li>
-          <li><i>✓</i> 📅 <b>Planificador + checklist</b> para publicar a diario sin quemarte</li>
+          <li><i>✓</i> 🎥 <b>Curso en vídeo</b> (2 h · 10 módulos) paso a paso</li>
+          <li><i>✓</i> 🧰 <b>Las 6 herramientas incluidas</b> (buscador, prompts, nichos…)</li>
+          <li><i>✓</i> 🎬 <b>Curso extra de vídeos largos</b></li>
+          <li><i>✓</i> 🧭 <b>30 nichos rentables</b> ya investigados</li>
+          <li><i>✓</i> 📚 <b>Biblioteca de prompts</b> + plantillas</li>
+          <li><i>✓</i> 💸 <b>Guía de monetización</b></li>
+          <li><i>✓</i> ♾️ <b>Soporte y actualizaciones</b> de por vida</li>
         </ul>
-        <a class="tbtn solid" href="https://pay.hotmart.com/C106550431X" target="_blank" rel="noopener" onclick="asmTrack&&asmTrack('checkout_herramientas','ventas')">Empezar hoy · 29 €</a>
+        <a class="tbtn solid" href="https://pay.hotmart.com/K106550148C" target="_blank" rel="noopener" onclick="asmTrack&&asmTrack('checkout_curso','ventas')">Conseguir el curso · 197 €</a>
+        <div class="tbtn-note">🛡️ Garantía de 7 días · te devolvemos el dinero</div>
       </div>
 
-      <!-- CURSO COMPLETO (incluye las herramientas) -->
+      <!-- HERRAMIENTAS (secundaria) -->
       <div class="tier">
-        <div class="ribbon green">🔥 Mejor valor · todo incluido</div>
-        <div class="tname">El Curso Completo</div>
-        <div class="tsub">El método completo + todas las herramientas.</div>
-        <div class="tprice">197 €</div>
-        <div class="tonce">pago único · acceso de por vida</div>
+        <div class="tname">Solo las Herramientas</div>
+        <div class="tsub">¿Solo quieres probar el sistema? El arsenal, sin el método.</div>
+        <div class="tprice">29 €</div>
+        <div class="tonce">pago único · acceso al instante</div>
         <ul>
-          <li><i>✓</i> Curso en vídeo (2 h · 10 módulos)</li>
-          <li><i>✓</i> <b>Las 6 herramientas incluidas</b></li>
-          <li><i>✓</i> 30 nichos investigados</li>
-          <li><i>✓</i> Biblioteca de prompts</li>
-          <li><i>✓</i> Plantillas y guía de monetización</li>
-          <li><i>✓</i> Soporte y actualizaciones de por vida</li>
+          <li><i>✓</i> 🔎 <b>Buscador de canales:</b> qué vídeos petan hoy en tu nicho</li>
+          <li><i>✓</i> ✨ <b>Generador de prompts:</b> tu idea → prompt pro en 10 s</li>
+          <li><i>✓</i> 🧭 <b>30 nichos rentables</b> investigados</li>
+          <li><i>✓</i> 🏷️ <b>Títulos, hooks y hashtags</b> que enganchan</li>
+          <li><i>✓</i> 💸 <b>Calculadora de ingresos</b></li>
+          <li><i>✓</i> 📅 <b>Planificador + checklist</b></li>
         </ul>
-        <a class="tbtn green" href="https://pay.hotmart.com/K106550148C" target="_blank" rel="noopener" onclick="asmTrack&&asmTrack('checkout_curso','ventas')">Conseguir el curso · 197 €</a>
+        <a class="tbtn outline" href="https://pay.hotmart.com/C106550431X" target="_blank" rel="noopener" onclick="asmTrack&&asmTrack('checkout_herramientas','ventas')">Solo las herramientas · 29 €</a>
       </div>
 
     </div>
-    <div class="helper">¿No sabes por dónde empezar? <b>Coge las Herramientas hoy por 29 €</b> — y cuando quieras el método completo, el curso ya las incluye.</div>
+    <div class="helper">La mayoría elige el <b>Curso Completo</b>: el método entero + las herramientas, hoy por <b>197 €</b> en vez de 799 €. ¿Solo quieres trastear? Coge las herramientas por 29 €.</div>
+    <div class="guarantee">
+      <span class="shield">🛡️</span>
+      <div><b>Garantía total de 7 días.</b><div class="g-sub">Entra, míralo todo y aplícalo. Si no es para ti, escríbenos en 7 días y te devolvemos el 100 %. Sin preguntas. (Gestionado por Hotmart.)</div></div>
+    </div>
   </section>
 
   <!-- WHO -->
@@ -237,20 +261,20 @@
       <details><summary>¿Tengo que dar la cara o poner mi voz?</summary><div class="ans">No. Los vídeos los genera la IA de principio a fin. Nunca apareces.</div></details>
       <details><summary>¿Necesito saber de tecnología o edición?</summary><div class="ans">No. Son 3 pasos: vídeo de referencia → prompt con IA → Higgsfield. Si sabes copiar y pegar, puedes.</div></details>
       <details><summary>¿Cómo accedo después de pagar?</summary><div class="ans">Tras el pago te llevamos a una página para indicarnos tu correo y te damos acceso personal (por Notion) a lo que hayas comprado.</div></details>
-      <details><summary>¿Puedo devolverlo?</summary><div class="ans">Por ser contenido digital de acceso inmediato, las compras son finales (ver <a href="reembolsos.html" style="color:var(--a2)">Política de reembolsos</a>). Si te atascas, tienes soporte.</div></details>
+      <details><summary>¿Puedo devolverlo?</summary><div class="ans">Sí. Tienes <b>garantía de 7 días</b>: si no es para ti, escríbenos dentro de los 7 días siguientes a la compra y te devolvemos el 100 %, sin preguntas (gestionado por Hotmart). Ver <a href="reembolsos.html" style="color:var(--a2)">Política de reembolsos</a>.</div></details>
     </div>
   </section>
 
   <!-- FINAL CTA -->
   <section class="center">
     <h2>Tu primer canal, <span class="grad">esta semana</span></h2>
-    <div class="sec-sub" style="margin:0 auto 26px">El tiempo perdido no se recupera. Empieza hoy desde 29 €.</div>
-    <a class="cta" href="#precios">Elegir mi opción →</a>
+    <div class="sec-sub" style="margin:0 auto 26px">Llévate el método completo + las herramientas hoy por <b style="color:#fff">197 €</b> (valor 799 €). La oferta de hoy termina en <span class="cd" id="cd2" style="color:#fff">--:--:--</span>.</div>
+    <a class="cta" href="#precios">Conseguir el curso →</a>
   </section>
 
   <footer>
     AI Shorts Mastery · Esto no garantiza ingresos: los resultados mostrados son ejemplos y dependen de tu trabajo y constancia.<br>
-    Pago seguro vía Stripe · Disponible en España y México · © AI Shorts Mastery<br>
+    Pago seguro vía Hotmart · IVA incluido · Garantía de 7 días · © AI Shorts Mastery<br>
     <a href="terminos.html" style="color:var(--a2);text-decoration:none">Términos</a> · <a href="privacidad.html" style="color:var(--a2);text-decoration:none">Privacidad</a> · <a href="reembolsos.html" style="color:var(--a2);text-decoration:none">Reembolsos</a>
   </footer>
 </div>
@@ -259,11 +283,25 @@
   (function(){var s;try{s=sessionStorage.getItem('asm_sid');if(!s){s=Date.now().toString(36)+Math.random().toString(36).slice(2,8);sessionStorage.setItem('asm_sid',s);}}catch(e){s='na';}
   window.asmTrack=function(ev,meta){try{var d='e='+encodeURIComponent(ev)+'&p='+encodeURIComponent(location.pathname)+'&s='+encodeURIComponent(s)+'&m='+encodeURIComponent(meta||'')+'&r='+encodeURIComponent(document.referrer||'');var b=new Blob([d],{type:'application/x-www-form-urlencoded'});if(navigator.sendBeacon){navigator.sendBeacon('/track.php',b);}else{fetch('/track.php',{method:'POST',body:d,headers:{'Content-Type':'application/x-www-form-urlencoded'},keepalive:true});}}catch(e){}};})();
   asmTrack('ventas');
+
+  // Contador de oferta — cuenta atrás hasta medianoche (se reinicia cada día)
+  (function(){
+    function pad(n){return (n<10?'0':'')+n;}
+    function tick(){
+      var now=new Date();
+      var end=new Date(now.getFullYear(),now.getMonth(),now.getDate(),23,59,59);
+      var diff=Math.max(0,Math.floor((end-now)/1000));
+      var t=pad(Math.floor(diff/3600))+':'+pad(Math.floor((diff%3600)/60))+':'+pad(diff%60);
+      var ids=['cd','cd2','cd3'];
+      for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]); if(el)el.textContent=t;}
+    }
+    tick(); setInterval(tick,1000);
+  })();
 </script>
 
 <div class="sticky">
-  <div class="txt">Empieza hoy · desde 29 €<small>pago único · acceso de por vida</small></div>
-  <a class="nav-cta" href="#precios" style="font-size:15px;padding:12px 22px">Ver opciones →</a>
+  <div class="txt">Curso Completo · hoy 197 € <s style="color:var(--muted2);font-weight:600">799 €</s><small>pago único · garantía de 7 días · termina en <span class="cd" id="cd3">--:--:--</span></small></div>
+  <a class="nav-cta" href="#precios" style="font-size:15px;padding:12px 22px">Conseguir el curso →</a>
 </div>
 
 </body>
