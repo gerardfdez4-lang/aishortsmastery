@@ -3,26 +3,8 @@
 header('Content-Type: text/plain; charset=utf-8');
 $base = dirname($_SERVER['DOCUMENT_ROOT']) . '/asm-data';
 
-// --- Visor de diagnóstico protegido: ?ver=CLAVE_PANEL ---
-$dbg = $base . '/hotmart_debug.log';
-$pkf = '';
-foreach (['/panel.key','/panel.key.txt','/panel.txt'] as $c) { if (is_file($base.$c)) { $pkf = $base.$c; break; } }
-$pk = $pkf ? trim(preg_replace('/^\xEF\xBB\xBF/','', file_get_contents($pkf)), " \t\n\r\0\x0B\"'") : '';
-if (isset($_GET['ver']) && $pk !== '' && $_GET['ver'] === $pk) {
-  $tk = is_file($base.'/hotmart.token') ? trim((string)file_get_contents($base.'/hotmart.token')) : '(NO existe asm-data/hotmart.token)';
-  echo "TOKEN guardado en el servidor: [$tk]\n";
-  echo "----- LOG DE PETICIONES ENTRANTES -----\n";
-  echo is_file($dbg) ? file_get_contents($dbg) : '(vacio - Hotmart todavia NO ha llamado a este webhook)';
-  exit;
-}
-
 $raw  = file_get_contents('php://input');
 $data = json_decode($raw, true);
-
-// --- Diagnostico: registrar TODA peticion entrante (aunque luego se rechace) ---
-$hdrs = '';
-foreach ($_SERVER as $k => $v) { if (strpos($k, 'HTTP_') === 0) $hdrs .= substr($k, 5) . '=' . $v . '; '; }
-@file_put_contents($dbg, date('c') . ' | GET=' . json_encode($_GET) . ' | HDR=' . $hdrs . ' | BODY=' . substr((string)$raw, 0, 3000) . "\n", FILE_APPEND);
 
 // --- validación por token (hottok) si existe asm-data/hotmart.token ---
 $tokfile = $base . '/hotmart.token';
