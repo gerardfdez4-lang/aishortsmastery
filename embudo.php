@@ -100,6 +100,8 @@ $nowHr = (int)date('G');
 ?><!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
 <meta http-equiv="refresh" content="45">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon.svg">
 <title>Embudo · AI Shorts Mastery</title>
 <style>
   body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0a0a0f;color:#e7e9f2;margin:0;padding:30px 22px 70px}
