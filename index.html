@@ -112,14 +112,14 @@
         <button class="es-replay" id="esReplay" type="button">↻ Volver a ver</button>
         <div class="es-kick">Empieza hoy</div>
         <h3>¿Aún no quieres el curso completo?</h3>
-        <p>Con el <b>pack de herramientas</b> puedes lanzar tu primer vídeo <b>hoy mismo</b> — por solo 29 €.</p>
-        <a class="es-cta" href="https://pay.hotmart.com/C106550431X" target="_blank" rel="noopener" onclick="asmTrack('checkout_herramientas','endscreen')">Empezar hoy · Herramientas 29 € →</a>
+        <p>Con el <b>pack de herramientas</b> puedes lanzar tu primer vídeo <b>hoy mismo</b> — por solo <span data-latam="$29">29 €</span>.</p>
+        <a class="es-cta" href="https://pay.hotmart.com/C106550431X" data-latam-href="https://pay.hotmart.com/C106550431X?off=outg704i" target="_blank" rel="noopener" onclick="asmTrack('checkout_herramientas','endscreen')">Empezar hoy · Herramientas <span data-latam="$29">29 €</span> →</a>
         <a class="es-2" href="ai-shorts-mastery-ventas.html#precios" onclick="asmTrack('cta_ventas','endscreen')">o ver el curso completo</a>
       </div>
     </div>
     <div class="vcta">
       <span>👉 ¿Lo quieres montar tú?</span>
-      <a class="vb1" href="https://pay.hotmart.com/C106550431X" target="_blank" rel="noopener" onclick="asmTrack&&asmTrack('checkout_herramientas','bajo_video')">Empezar hoy · Herramientas 29 €</a>
+      <a class="vb1" href="https://pay.hotmart.com/C106550431X" data-latam-href="https://pay.hotmart.com/C106550431X?off=outg704i" target="_blank" rel="noopener" onclick="asmTrack&&asmTrack('checkout_herramientas','bajo_video')">Empezar hoy · Herramientas <span data-latam="$29">29 €</span></a>
       <a class="vb2" href="ai-shorts-mastery-ventas.html#precios" onclick="asmTrack&&asmTrack('cta_ventas','bajo_video')">Ver todas las opciones</a>
     </div>
   </div>
@@ -136,7 +136,7 @@
 
   <div class="cta-wrap">
     <a class="cta" href="ai-shorts-mastery-ventas.html#precios" onclick="asmTrack('cta_ventas','abajo')">Quiero empezar hoy →</a>
-    <div class="trust">Desde 29 € · pago único · acceso de por vida</div>
+    <div class="trust">Desde <span data-latam="$29">29 €</span> · pago único · acceso de por vida</div>
   </div>
 
   <footer>AI Shorts Mastery · Esto no garantiza ingresos; los resultados dependen de tu trabajo. España y México.<br><a href="terminos.html" style="color:#6b7185;text-decoration:none">Términos</a> · <a href="privacidad.html" style="color:#6b7185;text-decoration:none">Privacidad</a> · <a href="reembolsos.html" style="color:#6b7185;text-decoration:none">Reembolsos</a></footer>
@@ -197,6 +197,19 @@
         unlock();
       });
   });
+
+  // Precio por región: visitantes de LATAM ven USD y sus ofertas (prueba: ?cc=MX)
+  (function(){
+    try{
+      fetch('/geo.php'+location.search).then(function(r){return r.json();}).then(function(g){
+        if(!g || !g.latam) return;
+        var els=document.querySelectorAll('[data-latam]');
+        for(var i=0;i<els.length;i++){ els[i].textContent=els[i].getAttribute('data-latam'); }
+        var hs=document.querySelectorAll('[data-latam-href]');
+        for(var j=0;j<hs.length;j++){ hs[j].setAttribute('href', hs[j].getAttribute('data-latam-href')); }
+      }).catch(function(){});
+    }catch(e){}
+  })();
 </script>
 </body>
 </html>
