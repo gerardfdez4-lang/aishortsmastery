@@ -125,6 +125,13 @@
   .guarantee b{color:var(--good)}
   .guarantee .g-sub{color:var(--muted);font-size:13.5px;font-weight:500}
   .tbtn-note{text-align:center;color:var(--good);font-size:12.5px;font-weight:700;margin-top:10px}
+  /* trust bar */
+  .trustbar{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:840px;margin:0 auto}
+  @media(max-width:640px){.trustbar{grid-template-columns:1fr 1fr}}
+  .trustbar .ts{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 12px;text-align:center}
+  .trustbar .tn{font-size:clamp(24px,4vw,34px);font-weight:900;line-height:1;background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .trustbar .tl{color:var(--muted);font-size:13px;font-weight:600;margin-top:6px}
+  .trust-disc{color:var(--muted2);font-size:11.5px;text-align:center;margin:14px auto 0;max-width:60ch;line-height:1.5}
 </style>
 </head>
 <body>
@@ -150,6 +157,17 @@
       <a class="cta" href="#precios">Conseguir el curso →</a>
       <span class="micro" data-latam="Pago único · impuestos según tu país · garantía de 7 días">Pago único · IVA incluido · garantía de 7 días</span>
     </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section style="padding:22px 0">
+    <div class="trustbar">
+      <div class="ts"><div class="tn">+400</div><div class="tl">alumnos formados</div></div>
+      <div class="ts"><div class="tn">+1M €*</div><div class="tl">generados por alumnos</div></div>
+      <div class="ts"><div class="tn">+4 años</div><div class="tl">creando canales de YouTube</div></div>
+      <div class="ts"><div class="tn">7 días</div><div class="tl">de garantía</div></div>
+    </div>
+    <p class="trust-disc">*Resultados reales de alumnos, no una promesa de ingresos: dependen del trabajo y la constancia de cada uno.</p>
   </section>
 
   <!-- PROOF -->
