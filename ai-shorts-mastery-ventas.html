@@ -148,7 +148,7 @@
     <div class="lead">El curso paso a paso <b>+ todas las herramientas incluidas</b>, sin dar la cara. Hoy a precio de lanzamiento: <b><span data-latam="$97">197 €</span></b> en vez de <span data-latam="$399">799 €</span>.</div>
     <div class="hero-cta">
       <a class="cta" href="#precios">Conseguir el curso →</a>
-      <span class="micro" data-latam="Pago único · impuestos incluidos · garantía de 7 días">Pago único · IVA incluido · garantía de 7 días</span>
+      <span class="micro" data-latam="Pago único · impuestos según tu país · garantía de 7 días">Pago único · IVA incluido · garantía de 7 días</span>
     </div>
   </section>
 
@@ -200,7 +200,7 @@
         <div class="tname">El Curso Completo</div>
         <div class="tsub">El método completo paso a paso + las 6 herramientas. Todo incluido.</div>
         <div class="tprice"><span data-latam="$97">197 €</span><span class="tstrike" data-latam="$399">799 €</span></div>
-        <div class="tonce" data-latam="pago único · impuestos incluidos · acceso de por vida">pago único · IVA incluido · acceso de por vida</div>
+        <div class="tonce" data-latam="pago único · impuestos según tu país · acceso de por vida">pago único · IVA incluido · acceso de por vida</div>
         <ul>
           <li><i>✓</i> 🎥 <b>Curso en vídeo</b> (2 h · 10 módulos) paso a paso</li>
           <li><i>✓</i> 🧰 <b>Las 6 herramientas incluidas</b> (buscador, prompts, nichos…)</li>
@@ -210,7 +210,7 @@
           <li><i>✓</i> 💸 <b>Guía de monetización</b></li>
           <li><i>✓</i> ♾️ <b>Soporte y actualizaciones</b> de por vida</li>
         </ul>
-        <a class="tbtn solid" href="https://pay.hotmart.com/K106550148C" target="_blank" rel="noopener" onclick="asmTrack&&asmTrack('checkout_curso','ventas')">Conseguir el curso · <span data-latam="$97">197 €</span></a>
+        <a class="tbtn solid" href="https://pay.hotmart.com/K106550148C" data-latam-href="https://pay.hotmart.com/K106550148C?off=wz264tpw" target="_blank" rel="noopener" onclick="asmTrack&&asmTrack('checkout_curso','ventas')">Conseguir el curso · <span data-latam="$97">197 €</span></a>
         <div class="tbtn-note">🛡️ Garantía de 7 días · te devolvemos el dinero</div>
       </div>
 
@@ -218,7 +218,7 @@
       <div class="tier">
         <div class="tname">Solo las Herramientas</div>
         <div class="tsub">¿Solo quieres probar el sistema? El arsenal, sin el método.</div>
-        <div class="tprice"><span data-latam="$17">29 €</span></div>
+        <div class="tprice"><span>29 €</span></div>
         <div class="tonce">pago único · acceso al instante</div>
         <ul>
           <li><i>✓</i> 🔎 <b>Buscador de canales:</b> qué vídeos petan hoy en tu nicho</li>
@@ -228,7 +228,7 @@
           <li><i>✓</i> 💸 <b>Calculadora de ingresos</b></li>
           <li><i>✓</i> 📅 <b>Planificador + checklist</b></li>
         </ul>
-        <a class="tbtn outline" href="https://pay.hotmart.com/C106550431X" target="_blank" rel="noopener" onclick="asmTrack&&asmTrack('checkout_herramientas','ventas')">Solo las herramientas · <span data-latam="$17">29 €</span></a>
+        <a class="tbtn outline" href="https://pay.hotmart.com/C106550431X" target="_blank" rel="noopener" onclick="asmTrack&&asmTrack('checkout_herramientas','ventas')">Solo las herramientas · <span>29 €</span></a>
       </div>
 
     </div>
@@ -274,7 +274,7 @@
 
   <footer>
     AI Shorts Mastery · Esto no garantiza ingresos: los resultados mostrados son ejemplos y dependen de tu trabajo y constancia.<br>
-    <span data-latam="Pago seguro vía Hotmart · impuestos incluidos · Garantía de 7 días · © AI Shorts Mastery">Pago seguro vía Hotmart · IVA incluido · Garantía de 7 días · © AI Shorts Mastery</span><br>
+    <span data-latam="Pago seguro vía Hotmart · impuestos según tu país · Garantía de 7 días · © AI Shorts Mastery">Pago seguro vía Hotmart · IVA incluido · Garantía de 7 días · © AI Shorts Mastery</span><br>
     <a href="terminos.html" style="color:var(--a2);text-decoration:none">Términos</a> · <a href="privacidad.html" style="color:var(--a2);text-decoration:none">Privacidad</a> · <a href="reembolsos.html" style="color:var(--a2);text-decoration:none">Reembolsos</a>
   </footer>
 </div>
@@ -305,6 +305,8 @@
         if(!g || !g.latam) return;
         var els=document.querySelectorAll('[data-latam]');
         for(var i=0;i<els.length;i++){ els[i].textContent=els[i].getAttribute('data-latam'); }
+        var hs=document.querySelectorAll('[data-latam-href]');
+        for(var j=0;j<hs.length;j++){ hs[j].setAttribute('href', hs[j].getAttribute('data-latam-href')); }
         document.documentElement.setAttribute('data-region','latam');
       }).catch(function(){});
     }catch(e){}
