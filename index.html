@@ -41,13 +41,17 @@
   .video video{position:absolute;inset:0;width:100%;height:100%;background:#000}
 
   /* END-SCREEN (aparece al terminar el vídeo) */
-  .endscreen{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:20px;
+  .endscreen{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding:12px;overflow:auto;
     background:radial-gradient(130% 130% at 50% 0%, rgba(32,18,31,.97) 0%, rgba(10,10,15,.98) 70%)}
   .endscreen.show{display:flex}
   .endscreen .es-kick{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--a2)}
-  .endscreen h3{font-size:clamp(18px,3.2vw,30px);font-weight:800;line-height:1.15;max-width:24ch;color:#fff}
+  .endscreen h3{font-size:clamp(16px,2.8vw,28px);font-weight:800;line-height:1.12;max-width:20ch;color:#fff}
   .endscreen p{color:var(--muted);font-size:clamp(13px,2vw,17px);max-width:36ch;margin-top:-2px}
   .endscreen p b{color:#fff}
+  .endscreen .es-price{display:flex;align-items:baseline;gap:10px;line-height:1;margin-top:2px}
+  .endscreen .es-price .now{font-size:clamp(26px,5.5vw,44px);font-weight:900;background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .endscreen .es-price .was{font-size:clamp(15px,2.4vw,20px);color:var(--muted2);text-decoration:line-through;font-weight:700}
+  .endscreen .es-count{font-variant-numeric:tabular-nums;font-weight:800;color:#fff;background:#000;border-radius:8px;padding:3px 9px;font-size:13.5px;letter-spacing:.04em}
   .endscreen .es-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:800;
     font-size:clamp(15px,2.2vw,19px);padding:13px 26px;border-radius:999px;text-decoration:none;margin-top:6px}
   .endscreen .es-cta:hover{filter:brightness(1.08)}
@@ -56,6 +60,12 @@
   .endscreen .es-replay{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.12);color:#fff;border:none;border-radius:999px;
     padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px}
   .endscreen .es-replay:hover{background:rgba(255,255,255,.2)}
+  /* En móvil, al acabar el vídeo el bloque de oferta crece a su contenido (el 16:9 deja poca altura) */
+  @media(max-width:640px){
+    .video.ended{aspect-ratio:auto}
+    .video.ended>video{display:none}
+    .video.ended .endscreen{position:relative;min-height:340px}
+  }
   /* CTA siempre visible bajo el vídeo */
   .vcta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
   .vcta span{font-weight:700;font-size:15px;margin-right:2px}
@@ -110,11 +120,12 @@
       <video id="clase" controls playsinline preload="metadata" src="clase.mp4"></video>
       <div class="endscreen" id="endscreen">
         <button class="es-replay" id="esReplay" type="button">↻ Volver a ver</button>
-        <div class="es-kick">Empieza hoy</div>
-        <h3>¿Aún no quieres el curso completo?</h3>
-        <p>Con el <b>pack de herramientas</b> puedes lanzar tu primer vídeo <b>hoy mismo</b> — por solo <span data-latam="$29">29 €</span>.</p>
-        <a class="es-cta" href="https://pay.hotmart.com/C106550431X" data-latam-href="https://pay.hotmart.com/C106550431X?off=outg704i" target="_blank" rel="noopener" onclick="asmTrack('checkout_herramientas','endscreen')">Empezar hoy · Herramientas <span data-latam="$29">29 €</span> →</a>
-        <a class="es-2" href="ai-shorts-mastery-ventas.html#precios" onclick="asmTrack('cta_ventas','endscreen')">o ver el curso completo</a>
+        <div class="es-kick">🔥 Oferta de lanzamiento · solo hoy</div>
+        <h3>El <span style="color:var(--a2)">curso completo</span> + todas las herramientas</h3>
+        <div class="es-price"><span class="now" data-latam="$97">197 €</span><span class="was" data-latam="$399">799 €</span></div>
+        <p>Pago único · garantía 7 días · termina en <span class="es-count" id="esCount">--:--:--</span></p>
+        <a class="es-cta" href="https://pay.hotmart.com/K106550148C" data-latam-href="https://pay.hotmart.com/K106550148C?off=wz264tpw" target="_blank" rel="noopener" onclick="asmTrack('checkout_curso','endscreen')">Conseguir el curso · <span data-latam="$97">197 €</span> →</a>
+        <a class="es-2" href="https://pay.hotmart.com/C106550431X" data-latam-href="https://pay.hotmart.com/C106550431X?off=outg704i" target="_blank" rel="noopener" onclick="asmTrack('checkout_herramientas','endscreen')">o solo las herramientas · <span data-latam="$29">29 €</span></a>
       </div>
     </div>
     <div class="vcta">
@@ -161,9 +172,10 @@
     var es=document.getElementById('endscreen');
     var rp=document.getElementById('esReplay');
     if(!v||!es) return;
+    var vid=es.parentElement; // el contenedor .video
     var fired={};
     function fire(ev){ if(!fired[ev]){ fired[ev]=1; asmTrack(ev); } }
-    v.addEventListener('play', function(){ es.classList.remove('show'); fire('video_play'); });
+    v.addEventListener('play', function(){ es.classList.remove('show'); vid.classList.remove('ended'); fire('video_play'); });
     v.addEventListener('timeupdate', function(){
       if(!v.duration) return;
       var p=v.currentTime/v.duration;
@@ -171,8 +183,8 @@
       if(p>=0.50) fire('video_50');
       if(p>=0.75) fire('video_75');
     });
-    v.addEventListener('ended', function(){ es.classList.add('show'); fire('video_fin'); });
-    rp.addEventListener('click', function(){ es.classList.remove('show'); try{v.currentTime=0; v.play();}catch(e){} });
+    v.addEventListener('ended', function(){ es.classList.add('show'); vid.classList.add('ended'); fire('video_fin'); });
+    rp.addEventListener('click', function(){ es.classList.remove('show'); vid.classList.remove('ended'); try{v.currentTime=0; v.play();}catch(e){} });
   })();
 
   // si ya desbloqueó antes, sáltate el muro
@@ -197,6 +209,18 @@
         unlock();
       });
   });
+
+  // Contador de la oferta del end-screen (se reinicia cada día a medianoche)
+  (function(){
+    var el=document.getElementById('esCount'); if(!el) return;
+    function pad(n){return (n<10?'0':'')+n;}
+    function tick(){
+      var now=new Date(), end=new Date(now.getFullYear(),now.getMonth(),now.getDate(),23,59,59);
+      var d=Math.max(0,Math.floor((end-now)/1000));
+      el.textContent=pad(Math.floor(d/3600))+':'+pad(Math.floor((d%3600)/60))+':'+pad(d%60);
+    }
+    tick(); setInterval(tick,1000);
+  })();
 
   // Precio por región: visitantes de LATAM ven USD y sus ofertas (prueba: ?cc=MX)
   (function(){
