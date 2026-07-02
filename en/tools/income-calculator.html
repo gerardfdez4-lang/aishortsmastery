@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Income Calculator · AI Shorts Mastery</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{--bg:#0a0a0f;--ink:#fff;--muted:#9aa0b4;--muted2:#6b7185;--a1:#ff3d3d;--a2:#ff8a00;--card:#16161f;--line:#262633;--good:#39d98a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(900px 500px at 75% -10%,#20121f 0%,var(--bg) 55%),var(--bg);color:#e7e9f2;line-height:1.5;padding:34px 20px 70px}
+  .wrap{max-width:680px;margin:0 auto}
+  .grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .kick{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--a2);margin-bottom:8px}
+  h1{font-size:clamp(24px,4.5vw,36px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:6px}
+  .sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+  .field{margin-bottom:16px}
+  .field .lab{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .field .val{color:#fff;font-weight:700}
+  input[type=range]{width:100%}
+  .res{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-top:18px;text-align:center}
+  .res .big{font-size:clamp(38px,9vw,64px);font-weight:900;letter-spacing:-.02em;line-height:1}
+  .res .lbl{color:var(--muted);font-size:14px;margin-top:4px}
+  .res .row{display:flex;justify-content:space-around;margin-top:18px;gap:10px;flex-wrap:wrap}
+  .res .row div b{display:block;font-size:20px;color:#fff;font-weight:800}
+  .res .row div span{color:var(--muted2);font-size:12px}
+  .tip{color:var(--muted2);font-size:13px;margin-top:16px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick">AI Shorts Mastery · Tool</div>
+  <h1>Income <span class="grad">Calculator</span></h1>
+  <div class="sub">A rough estimate based on your volume and RPM. Move the sliders.</div>
+
+  <div class="field"><div class="lab"><span>Videos per month</span><span class="val" id="vVid">30</span></div><input type="range" id="vid" min="5" max="120" step="1" value="30"></div>
+  <div class="field"><div class="lab"><span>Average views per video</span><span class="val" id="vViews">50,000</span></div><input type="range" id="views" min="1000" max="3000000" step="1000" value="50000"></div>
+  <div class="field"><div class="lab"><span>RPM ($ per 1,000 views)</span><span class="val" id="vRpm">$0.12</span></div><input type="range" id="rpm" min="0.05" max="8" step="0.01" value="0.12"></div>
+
+  <div class="res">
+    <div class="big grad" id="mes">$0</div>
+    <div class="lbl">estimated per month</div>
+    <div class="row">
+      <div><b id="anio">$0</b><span>per year</span></div>
+      <div><b id="totviews">0</b><span>views/mo</span></div>
+    </div>
+  </div>
+
+  <div class="tip">⚠️ This is an <b>estimate</b>, not a promise. Real RPM varies a lot by country, season and content type (kids' "made for kids" content usually has a lower RPM; high-RPM niches like finance can go well above $1). What you truly control is <b>volume</b> and <b>consistency</b>.</div>
+</div>
+<script>
+  function usd(n){return Math.round(n).toLocaleString('en-US');}
+  function calc(){
+    var vid=+document.getElementById('vid').value;
+    var views=+document.getElementById('views').value;
+    var rpm=+document.getElementById('rpm').value;
+    var totalViews=vid*views;
+    var mes=totalViews/1000*rpm;
+    document.getElementById('vVid').textContent=vid;
+    document.getElementById('vViews').textContent=usd(views);
+    document.getElementById('vRpm').textContent='$'+rpm.toFixed(2);
+    document.getElementById('mes').textContent='$'+usd(mes);
+    document.getElementById('anio').textContent='$'+usd(mes*12);
+    document.getElementById('totviews').textContent=usd(totalViews);
+  }
+  ['vid','views','rpm'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
+  calc();
+</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Channel Finder · AI Shorts Mastery</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZjNkM2QiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmY4YTAwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjI0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHBhdGggZD0iTTQwIDMxIEw0MCA2OSBMNzEgNTAgWiIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{--bg:#0a0a0f;--ink:#fff;--muted:#9aa0b4;--muted2:#6b7185;--a1:#ff3d3d;--a2:#ff8a00;--card:#16161f;--line:#262633;--good:#39d98a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(900px 500px at 75% -10%,#20121f 0%,var(--bg) 55%),var(--bg);color:#e7e9f2;line-height:1.5;padding:34px 20px 70px}
+  .wrap{max-width:880px;margin:0 auto}
+  .grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .kick{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--a2);margin-bottom:8px}
+  h1{font-size:clamp(24px,4.5vw,36px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:6px}
+  .sub{color:var(--muted);font-size:15px;margin-bottom:20px}
+  .tabs{display:flex;gap:8px;margin-bottom:18px}
+  .tab{flex:1;padding:11px;border:1px solid var(--line);border-radius:10px;background:#0d0d14;color:var(--muted);font-weight:700;font-size:14px;cursor:pointer;text-align:center}
+  .tab.on{background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;border-color:transparent}
+  .pane{display:none}.pane.on{display:block}
+  .bar{display:flex;gap:10px;flex-wrap:wrap}
+  select,input{flex:1;min-width:180px;padding:13px 14px;border:1px solid var(--line);border-radius:10px;background:#0d0d14;color:#fff;font-size:15px}
+  select:focus,input:focus{outline:none;border-color:var(--a2)}
+  .btn{background:linear-gradient(90deg,var(--a1),var(--a2));color:#0a0a0f;font-weight:800;border:none;border-radius:10px;padding:0 22px;font-size:15px;cursor:pointer}
+  .opts{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;margin-top:10px}
+  .opts input{flex:none;min-width:0;width:auto}
+  .hint{color:var(--muted2);font-size:12px;margin:14px 0 0}
+  .msg{color:var(--muted);font-size:14px;margin:18px 0 6px}
+  .chead{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:16px 0 4px}
+  .chead img{width:48px;height:48px;border-radius:50%}
+  .chead b{font-size:16px;color:#fff;display:block}
+  .chead span{color:var(--muted);font-size:13px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .v{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .v a.th{display:block}
+  .v img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#000;display:block}
+  .v .b{padding:11px 12px;display:flex;flex-direction:column;flex:1}
+  .v .t{font-size:13.5px;font-weight:600;line-height:1.3;color:#e7e9f2;text-decoration:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .v .c{color:var(--muted);font-size:12px;margin-top:5px}
+  .v .views{color:var(--good);font-weight:800;font-size:14px;margin-top:4px;margin-bottom:10px}
+  .v .gp{margin-top:auto;background:#1d1d2a;border:1px solid var(--line);color:#fff;font-weight:700;font-size:12.5px;padding:8px;border-radius:8px;cursor:pointer}
+  .v .gp:hover{border-color:var(--a2)}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--good);color:#06210f;font-weight:800;padding:11px 18px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick">AI Shorts Mastery · Tool</div>
+  <h1>Channel <span class="grad">Finder</span></h1>
+  <div class="sub">Market research with real public YouTube data. See what works, copy the format (not the content), and pull your prompt.</div>
+
+  <div class="tabs">
+    <div class="tab on" id="tabN" onclick="setTab('N')">🔎 By niche</div>
+    <div class="tab" id="tabC" onclick="setTab('C')">📺 By reference channel</div>
+  </div>
+
+  <!-- NICHE -->
+  <div class="pane on" id="paneN">
+    <div class="bar">
+      <select id="nicho"></select>
+      <button class="btn" onclick="buscarNicho()">Search</button>
+    </div>
+    <label class="opts"><input type="checkbox" id="recent" checked> Only videos from the last month (what's blowing up now)</label>
+    <div class="hint">💡 Pulls the most-viewed videos in the niche. Look at the format, the hook and the length.</div>
+  </div>
+
+  <!-- CHANNEL -->
+  <div class="pane" id="paneC">
+    <div class="bar">
+      <input id="ref" placeholder="Paste the channel URL, its @handle or its name" onkeydown="if(event.key==='Enter')buscarCanal()">
+      <button class="btn" onclick="buscarCanal()">Analyze</button>
+    </div>
+    <div class="hint">💡 Pulls the MOST-viewed videos from that channel. Then hit "Generate prompt" on the one you like most.</div>
+  </div>
+
+  <div class="msg" id="msg"></div>
+  <div id="chead"></div>
+  <div class="grid" id="grid"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+  // 50 niches (label -> search query)
+  var NICHOS=[
+    ['— Kids / family —',''],
+    ['Cute animals dancing (3D)','cute animals dancing 3d short'],
+    ['Funny baby animals','funny baby animals 3d short'],
+    ['Cute characters / pets','cute 3d character funny short'],
+    ['Nursery rhymes','nursery rhymes animation short'],
+    ['Learn colors and numbers','learn colors numbers kids short'],
+    ['— Facts / educational —',''],
+    ['Fun facts','did you know facts shorts'],
+    ['Science facts','science facts shorts'],
+    ['History facts','history facts shorts'],
+    ['Mythology explained','mythology explained shorts'],
+    ['Space and the universe','space facts shorts'],
+    ['Human body','human body facts shorts'],
+    ['Size comparisons','size comparison shorts'],
+    ['Wild animal facts','wild animal facts shorts'],
+    ['Countries and geography','country comparison shorts'],
+    ['Amazing inventions','amazing inventions shorts'],
+    ['— What-if / scenarios —',''],
+    ['What if…?','what would happen if shorts'],
+    ['Who survives?','who survives shorts'],
+    ['Who escapes first?','who escapes first shorts'],
+    ['Who would win?','who would win shorts'],
+    ['Extreme situations / POV','extreme pov scenario shorts'],
+    ['— Stories / narrative —',''],
+    ['Mini stories with a twist','short story plot twist shorts'],
+    ['Short horror','scary stories shorts'],
+    ['Creepypasta','creepypasta shorts'],
+    ['Unsolved mysteries','unsolved mysteries shorts'],
+    ['True survival stories','true survival story shorts'],
+    ['Urban legends','urban legends shorts'],
+    ['— Visual / satisfying —',''],
+    ['Oddly satisfying','oddly satisfying shorts'],
+    ['Visual ASMR','asmr visual shorts'],
+    ['Cinematic nature','cinematic nature shorts'],
+    ['Optical illusions','optical illusion shorts'],
+    ['— Animals / creatures —',''],
+    ['Animals acting like humans','animals acting like humans funny shorts'],
+    ['AI fantasy creatures','fantasy creatures ai shorts'],
+    ['3D dinosaurs','dinosaurs 3d shorts'],
+    ['Funny AI cats','funny cat ai shorts'],
+    ['— Aspirational / lifestyle —',''],
+    ['Luxury houses','luxury house tour shorts'],
+    ['Supercars','supercars shorts'],
+    ['Cities of the future','future city concept shorts'],
+    ['Travel / amazing places','beautiful travel places shorts'],
+    ['— High RPM —',''],
+    ['Motivation','motivation shorts'],
+    ['Stoicism','stoicism shorts'],
+    ['Personal finance','personal finance shorts'],
+    ['Business / entrepreneurship','business tips shorts'],
+    ['AI tools','ai tools shorts'],
+    ['Productivity','productivity shorts'],
+    ['— Entertainment / lists —',''],
+    ['Top 5 rankings','top 5 ranking shorts'],
+    ['Giant / impossible food','giant food shorts'],
+    ['Quick recipes','quick recipe shorts'],
+    ['Food facts','food facts shorts'],
+    ['Life hacks','life hacks shorts']
+  ];
+  var sel=document.getElementById('nicho');
+  NICHOS.forEach(function(o,i){
+    var op=document.createElement('option');
+    op.textContent=o[0]; op.value=o[1];
+    if(o[1]==='') op.disabled=true;
+    sel.appendChild(op);
+  });
+  sel.selectedIndex=1;
+
+  function setTab(t){
+    document.getElementById('tabN').classList.toggle('on',t==='N');
+    document.getElementById('tabC').classList.toggle('on',t==='C');
+    document.getElementById('paneN').classList.toggle('on',t==='N');
+    document.getElementById('paneC').classList.toggle('on',t==='C');
+    clear();
+  }
+  function clear(){document.getElementById('msg').textContent='';document.getElementById('chead').innerHTML='';document.getElementById('grid').innerHTML='';}
+  function n(x){return Number(x).toLocaleString('en-US');}
+  function esc(s){return s.replace(/</g,'&lt;').replace(/"/g,'&quot;');}
+  function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(function(){el.classList.remove('show');},1600);}
+
+  function genPrompt(title,id){
+    var p='You are an expert in prompts for AI video (Higgsfield). Here is a reference Short that performs really well:\n'+
+      'Title: "'+title+'"\n'+
+      'Link: https://www.youtube.com/watch?v='+id+'\n\n'+
+      'Analyze its style, format, pace and hook. Reproduce THAT style (not the content) and give me ONE single prompt to generate a similar video but with MY topic: [WRITE YOUR TOPIC HERE].\n'+
+      'Structure: subject + action + environment + visual style + camera + lighting + mood. Max 60 words. Return only the prompt, ready to paste.';
+    navigator.clipboard.writeText(p).then(function(){toast('✅ Prompt copied — paste it into ChatGPT/Claude');},function(){toast('Manual copy: '+p);});
+  }
+  window.genPrompt=genPrompt;
+
+  function render(d){
+    var grid=document.getElementById('grid');
+    if(!d.items||!d.items.length){document.getElementById('msg').textContent='No results. Try another option.';return;}
+    document.getElementById('msg').textContent=d.items.length+' videos (sorted by views)';
+    grid.innerHTML=d.items.map(function(v){
+      return '<div class="v"><a class="th" href="https://www.youtube.com/watch?v='+v.id+'" target="_blank" rel="noopener">'+
+        '<img src="'+v.thumb+'" referrerpolicy="no-referrer" alt=""></a>'+
+        '<div class="b">'+
+        '<a class="t" href="https://www.youtube.com/watch?v='+v.id+'" target="_blank" rel="noopener">'+esc(v.title)+'</a>'+
+        '<div class="c">'+esc(v.channel)+'</div>'+
+        '<div class="views">'+n(v.views)+' views</div>'+
+        '<button class="gp" onclick="genPrompt(this.dataset.t,this.dataset.i)" data-t="'+esc(v.title)+'" data-i="'+v.id+'">✨ Generate prompt</button>'+
+        '</div></div>';
+    }).join('');
+  }
+  function fail(err){
+    var msg=document.getElementById('msg');
+    if(err==='falta_api_key') msg.innerHTML='⚠️ The YouTube API key isn\'t configured on the server yet.';
+    else if(err==='canal_no_encontrado') msg.textContent='Couldn\'t find that channel. Try the full URL or the @handle.';
+    else msg.textContent='Couldn\'t search right now (might be the daily quota). Try again later.';
+  }
+
+  function buscarNicho(){
+    var q=sel.value; if(!q) return;
+    var recent=document.getElementById('recent').checked?'1':'0';
+    clear();document.getElementById('msg').textContent='Searching…';
+    fetch('/herramientas/buscar-canales.php?mode=niche&recent='+recent+'&q='+encodeURIComponent(q))
+      .then(function(r){return r.json();})
+      .then(function(d){if(!d.ok){fail(d.error);return;}render(d);})
+      .catch(function(){fail();});
+  }
+  function buscarCanal(){
+    var ref=document.getElementById('ref').value.trim(); if(!ref) return;
+    clear();document.getElementById('msg').textContent='Analyzing channel…';
+    fetch('/herramientas/buscar-canales.php?mode=channel&ref='+encodeURIComponent(ref))
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(!d.ok){fail(d.error);return;}
+        if(d.channel){
+          document.getElementById('chead').innerHTML='<div class="chead">'+
+            (d.channel.thumb?'<img src="'+d.channel.thumb+'" referrerpolicy="no-referrer">':'')+
+            '<div><b>'+esc(d.channel.title)+'</b><span>'+n(d.channel.subs)+' subscribers</span></div></div>';
+        }
+        render(d);
+      })
+      .catch(function(){fail();});
+  }
+</script>
+</body>
+</html>
